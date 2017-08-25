@@ -13,7 +13,7 @@ import Foundation
  Returns an iterator that returns values from each sequence until all are exhausted.
  Used for treating consecutive sequences as a single sequence.
  ```
- chain([1, 2, 3], [4, 5, 6])
+ let values = chain([1, 2, 3], [4, 5, 6])
  // 1, 2, 3, 4, 5, 6
  ```
  - Parameter sequences: The sequences to chain.

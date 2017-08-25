@@ -14,7 +14,7 @@ public extension Sequence {
     /**
      Returns the array elements from the sequence for which the predicate is false.
      ```
-     [1, 2, 3, 4, 5].reject { $0 % 2 == 0 }
+     let values = [1, 2, 3, 4, 5].reject { $0 % 2 == 0 }
      // [1, 3, 5]
      ```
      - Parameter predicate: The predicate used to determine whether the elements should be included in the result. 
