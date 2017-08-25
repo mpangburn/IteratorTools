@@ -11,6 +11,10 @@ import Foundation
 
 /**
  Returns an iterator beginning at `start` and incrementing by `step`.
+ ```
+ counter(start: 1, step: 2)
+ // 1, 3, 5, 7, 9, ...
+ ```
  - Parameters:
     - start: The starting value for the counter.
     - step: The value by which to increment.

@@ -12,10 +12,14 @@ import Foundation
 /**
  Returns an iterator that returns values from each sequence until all are exhausted.
  Used for treating consecutive sequences as a single sequence.
+ ```
+ chain([1, 2, 3], [4, 5, 6])
+ // 1, 2, 3, 4, 5, 6
+ ```
  - Parameter sequences: The sequences to chain.
  - Returns: An iterator that returns values from each sequence until all are exhausted.
  */
-public func chain<S>(_ sequences: S...) -> Chain<S> {
+public func chain<S: Sequence>(_ sequences: S...) -> Chain<S> {
     return Chain(sequences: sequences)
 }
 

@@ -12,7 +12,7 @@ import XCTest
 
 class CounterTests: XCTestCase {
 
-    func testInfiniteCounter() {
+    func testCounterBasic() {
         var values = counter(start: 0)
         XCTAssert(values.start == 0)
         XCTAssert(values.step == 1)
@@ -23,14 +23,14 @@ class CounterTests: XCTestCase {
         }
     }
 
-    func testInfiniteStepOfTwo() {
+    func testStepOfTwo() {
         var values = counter(start: 0, step: 2)
         for index in 0...100 {
             XCTAssert(values.next() == Double(index * 2))
         }
     }
 
-    func testInfiniteNegativeStep() {
+    func testNegativeStep() {
         var values = counter(start: 0, step: -1)
         for index in 0...100 {
             XCTAssert(values.next() == Double(-index))

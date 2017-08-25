@@ -24,31 +24,9 @@ public extension Sequence {
     }
 
     /**
-     Returns an array of `times` cycles of self.
-     ```
-     [1, 2, 3].cycle(times: 2)
-     // [1, 2, 3, 1, 2, 3]
-     ```
-     - Parameter times: The number of times to cycle through the sequence.
-     - Returns: An array of `times` cycles of self.
-     */
-    func cycle(times: Int) -> [Iterator.Element] {
-        var cycled: [Iterator.Element] = []
-        cycled.reserveCapacity(underestimatedCount * times)
-        for _ in 0..<times {
-            cycled.append(contentsOf: self)
-        }
-        return cycled
-    }
-}
-
-
-public extension LazySequenceProtocol where Self: Collection {
-
-    /**
      Returns an iterator of `times` cycles of self.
      ```
-     [1, 2, 3].lazy.cycle(times: 2)
+     [1, 2, 3].cycle(times: 2)
      // 1, 2, 3, 1, 2, 3
      ```
      - Parameter times: The number of times to cycle through the sequence.
