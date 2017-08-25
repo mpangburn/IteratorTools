@@ -11,6 +11,13 @@ import Foundation
 
 /**
  Returns an iterator repeating a value, either infinitely or a specified number of times.
+ ```
+ repeater(value: 0)
+ // 0, 0, 0, 0, ...
+ 
+ repeater(value, 0, times: 3)
+ // 0, 0, 0
+ ```
  - Parameters:
     - value: The value to repeat.
     - times: The number of times to repeat. Defaults to infinite repetition.
