@@ -1,0 +1,39 @@
+//
+//  CounterTests.swift
+//  IteratorTools
+//
+//  Created by Michael Pangburn on 8/24/17.
+//  Copyright © 2017 Michael Pangburn. All rights reserved.
+//
+
+import XCTest
+@testable import IteratorTools
+
+
+class CounterTests: XCTestCase {
+
+    func testInfiniteCounter() {
+        var values = counter(start: 0)
+        XCTAssert(values.start == 0)
+        XCTAssert(values.step == 1)
+        XCTAssert(values.next() == 0)
+        XCTAssert(values.start == 1)
+        for index in 1...100 {
+            XCTAssert(values.next() == Double(index))
+        }
+    }
+
+    func testInfiniteStepOfTwo() {
+        var values = counter(start: 0, step: 2)
+        for index in 0...100 {
+            XCTAssert(values.next() == Double(index * 2))
+        }
+    }
+
+    func testInfiniteNegativeStep() {
+        var values = counter(start: 0, step: -1)
+        for index in 0...100 {
+            XCTAssert(values.next() == Double(-index))
+        }
+    }
+}
