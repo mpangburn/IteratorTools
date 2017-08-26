@@ -12,10 +12,10 @@ import Foundation
 /**
  Returns an iterator repeating a value, either infinitely or a specified number of times.
  ```
- let values = repeater(value: 0)
+ var values = repeater(value: 0)
  // 0, 0, 0, 0, ...
  
- let values = repeater(value, 0, times: 3)
+ var values = repeater(value, 0, times: 3)
  // 0, 0, 0
  ```
  - Parameters:
@@ -40,11 +40,7 @@ public struct Repeater<T>: IteratorProtocol, LazySequenceProtocol {
     }
 
     public mutating func next() -> T? {
-        defer {
-            if times > 0 {
-                times -= 1
-            }
-        }
+        defer { times -= 1 }
         return times == 0 ? nil : value
     }
 }

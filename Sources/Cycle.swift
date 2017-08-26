@@ -14,7 +14,7 @@ public extension Sequence {
     /**
      Returns an iterator cycling infinitely through the sequence.
      ```
-     let values = [1, 2, 3].cycle()
+     var values = [1, 2, 3].cycle()
      // 1, 2, 3, 1, 2, 3, 1, ...
      ```
      - Returns: An iterator cycling infinitely through the sequence.
@@ -26,7 +26,7 @@ public extension Sequence {
     /**
      Returns an iterator of `times` cycles of self.
      ```
-     let values = [1, 2, 3].cycle(times: 2)
+     var values = [1, 2, 3].cycle(times: 2)
      // 1, 2, 3, 1, 2, 3
      ```
      - Parameter times: The number of times to cycle through the sequence.

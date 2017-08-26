@@ -14,7 +14,7 @@ public extension Sequence {
     /**
      Returns an iterator for consecutively accumulating the sequence's values.
      ```
-     let values = [1, 2, 3, 4].accumulate(+)
+     var values = [1, 2, 3, 4].accumulate(+)
      // 1, 3, 6, 10
      ```
      - Parameter nextPartialResult: The function used to accumulate the sequence's values.
