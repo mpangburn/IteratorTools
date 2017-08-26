@@ -26,4 +26,15 @@ class RepeaterTests: XCTestCase {
         }
         XCTAssert(values.next() == nil)
     }
+
+    func testSingleRepeater() {
+        var values = repeater(value: 0, times: 1)
+        XCTAssert(values.next() == 0)
+        XCTAssert(values.next() == nil)
+    }
+
+    func testZeroRepeater() {
+        var values = repeater(value: 0, times: 0)
+        XCTAssert(values.next() == nil)
+    }
 }

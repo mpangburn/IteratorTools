@@ -15,6 +15,8 @@
 		89CEDB691F50D3C0005944DD /* GroupedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB681F50D3C0005944DD /* GroupedTests.swift */; };
 		89CEDB6B1F50E8E3005944DD /* Tee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6A1F50E8E3005944DD /* Tee.swift */; };
 		89CEDB6D1F50E9B5005944DD /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6C1F50E9B5005944DD /* TeeTests.swift */; };
+		89CEDB6F1F50F139005944DD /* ZipLongest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6E1F50F139005944DD /* ZipLongest.swift */; };
+		89CEDB711F50F498005944DD /* ZipLongestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB701F50F498005944DD /* ZipLongestTests.swift */; };
 		89E8F1A81F4F2CC9000FC583 /* IteratorTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E8F19E1F4F2CC9000FC583 /* IteratorTools.framework */; };
 		89E8F1AF1F4F2CC9000FC583 /* IteratorTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 89E8F1A11F4F2CC9000FC583 /* IteratorTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89E8F1BE1F4F3C10000FC583 /* Cycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1BD1F4F3C10000FC583 /* Cycle.swift */; };
@@ -48,6 +50,8 @@
 		89CEDB681F50D3C0005944DD /* GroupedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedTests.swift; sourceTree = "<group>"; };
 		89CEDB6A1F50E8E3005944DD /* Tee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tee.swift; path = Sources/Tee.swift; sourceTree = "<group>"; };
 		89CEDB6C1F50E9B5005944DD /* TeeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeeTests.swift; sourceTree = "<group>"; };
+		89CEDB6E1F50F139005944DD /* ZipLongest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZipLongest.swift; path = Sources/ZipLongest.swift; sourceTree = "<group>"; };
+		89CEDB701F50F498005944DD /* ZipLongestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipLongestTests.swift; sourceTree = "<group>"; };
 		89E8F19E1F4F2CC9000FC583 /* IteratorTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IteratorTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E8F1A11F4F2CC9000FC583 /* IteratorTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IteratorTools.h; sourceTree = "<group>"; };
 		89E8F1A21F4F2CC9000FC583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				89CEDB641F509FD7005944DD /* RejectTests.swift */,
 				89E8F1C71F4F8144000FC583 /* RepeaterTests.swift */,
 				89CEDB6C1F50E9B5005944DD /* TeeTests.swift */,
+				89CEDB701F50F498005944DD /* ZipLongestTests.swift */,
 				89E8F1AE1F4F2CC9000FC583 /* Info.plist */,
 			);
 			path = IteratorToolsTests;
@@ -141,6 +146,7 @@
 				89CEDB621F509B27005944DD /* Reject.swift */,
 				89E8F1C51F4F733C000FC583 /* Repeater.swift */,
 				89CEDB6A1F50E8E3005944DD /* Tee.swift */,
+				89CEDB6E1F50F139005944DD /* ZipLongest.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89CEDB6B1F50E8E3005944DD /* Tee.swift in Sources */,
+				89CEDB6F1F50F139005944DD /* ZipLongest.swift in Sources */,
 				89E8F1C21F4F56E2000FC583 /* Counter.swift in Sources */,
 				89CEDB631F509B27005944DD /* Reject.swift in Sources */,
 				89E8F1BE1F4F3C10000FC583 /* Cycle.swift in Sources */,
@@ -277,6 +284,7 @@
 				89CEDB691F50D3C0005944DD /* GroupedTests.swift in Sources */,
 				89E8F1CC1F4F8F7A000FC583 /* AccumulateTests.swift in Sources */,
 				89E8F1CE1F507771000FC583 /* Chain.swift in Sources */,
+				89CEDB711F50F498005944DD /* ZipLongestTests.swift in Sources */,
 				89CEDB611F509651005944DD /* CompressTests.swift in Sources */,
 				89E8F1C81F4F8144000FC583 /* RepeaterTests.swift in Sources */,
 				89E8F1C61F4F733C000FC583 /* Repeater.swift in Sources */,

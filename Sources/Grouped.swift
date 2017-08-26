@@ -25,7 +25,7 @@ public extension Sequence {
      - Parameter key: The key function used in determining groups.
      - Returns: An iterator that returns consecutive keys and groups from the sequence.
      */
-    func grouped<Key>(by key: @escaping (Iterator.Element) -> Key) -> Grouper<Self, Key> where Key: Equatable {
+    func grouped<Key: Equatable>(by key: @escaping (Iterator.Element) -> Key) -> Grouper<Self, Key> {
         return Grouper(sequence: self, key: key)
     }
 }

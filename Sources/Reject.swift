@@ -24,4 +24,4 @@ public extension Sequence {
     func reject(predicate: @escaping (Iterator.Element) -> Bool) -> [Iterator.Element] {
         return filter { !predicate($0) }
     }
-} 
+}

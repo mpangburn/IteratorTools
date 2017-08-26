@@ -25,13 +25,13 @@ public func counter(start: Double, step: Double = 1) -> Counter {
 }
 
 
-/// A simple incremental counter. See `counter(start:step:)`
+/// An iterator that functions as a simple incremental counter. See `counter(start:step:)`
 public struct Counter: IteratorProtocol, LazySequenceProtocol {
 
     var start: Double
     let step: Double
 
-    public init(start: Double, step: Double) {
+    init(start: Double, step: Double) {
         self.start = start
         self.step = step
     }

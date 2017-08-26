@@ -21,23 +21,23 @@ import Foundation
     - selectors: The selectors used in filtering the data.
  - Returns: An iterator that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
  */
-public func compress<S, T>(data: S, selectors: T) -> Compressor<S, T> {
+public func compress<S1, S2>(data: S1, selectors: S2) -> Compressor<S1, S2> {
     return Compressor(data: data, selectors: selectors)
 }
 
 
 /// An iterator for filtering data based on corresponding selectors. See `compress(data:selectors:)`.
-public struct Compressor<S: Sequence, T: Sequence>: IteratorProtocol, Sequence where T.Iterator.Element == Bool {
+public struct Compressor<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence where S2.Iterator.Element == Bool {
 
-    var dataIterator: S.Iterator
-    var selectorIterator: T.Iterator
+    var dataIterator: S1.Iterator
+    var selectorIterator: S2.Iterator
 
-    init(data: S, selectors: T) {
+    init(data: S1, selectors: S2) {
         self.dataIterator = data.makeIterator()
         self.selectorIterator = selectors.makeIterator()
     }
 
-    public mutating func next() -> S.Iterator.Element? {
+    public mutating func next() -> S1.Iterator.Element? {
         guard let nextData = dataIterator.next(), let nextSelector = selectorIterator.next() else {
             return nil
         }
