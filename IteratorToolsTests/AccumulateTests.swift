@@ -11,25 +11,46 @@ import XCTest
 
 
 class AccumulateTests: XCTestCase {
-    
+
+    // MARK: - Eager computation
+
     func testAccumulateAdd() {
-        var accumulator = [1, 2, 3].accumulate(+)
+        let values = [1, 2, 3].accumulate(+)
+        XCTAssert(values == [1, 3, 6])
+    }
+
+    func testAccumulateMultiply() {
+        let values = [1, 2, 3].accumulate(*)
+        XCTAssert(values == [1, 2, 6])
+    }
+
+    func testAccumulateCustom() {
+        let values = ["Hello", "q ", "zWorld", ".!"].accumulate {
+            $0 + String($1.characters.dropFirst())
+        }
+        XCTAssert(values == ["Hello", "Hello ", "Hello World", "Hello World!"])
+    }
+
+    // MARK: - Lazy computation
+    
+    func testLazyAccumulateAdd() {
+        var accumulator = [1, 2, 3].lazy.accumulate(+)
         XCTAssert(accumulator.next() == 1)
         XCTAssert(accumulator.next() == 3)
         XCTAssert(accumulator.next() == 6)
         XCTAssert(accumulator.next() == nil)
     }
 
-    func testAccumulateMultiply() {
-        var accumulator = [1, 2, 3].accumulate(*)
+    func testLazyAccumulateMultiply() {
+        var accumulator = [1, 2, 3].lazy.accumulate(*)
         XCTAssert(accumulator.next() == 1)
         XCTAssert(accumulator.next() == 2)
         XCTAssert(accumulator.next() == 6)
         XCTAssert(accumulator.next() == nil)
     }
 
-    func testAccumulateCustom() {
-        var accumulator = ["Hello", "q ", "zWorld", ".!"].accumulate {
+    func testLazyAccumulateCustom() {
+        var accumulator = ["Hello", "q ", "zWorld", ".!"].lazy.accumulate {
             $0 + String($1.characters.dropFirst())
         }
         XCTAssert(accumulator.next() == "Hello")
