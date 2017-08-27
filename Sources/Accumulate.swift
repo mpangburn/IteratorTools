@@ -21,15 +21,7 @@ public extension Sequence {
      - Returns: An array of containing consecutively accumulated values from the sequence.
      */
     func accumulate(_ nextPartialResult: @escaping (Iterator.Element, Iterator.Element) -> Iterator.Element) -> [Iterator.Element] {
-        var values: [Iterator.Element] = []
-        for value in self {
-            if values.isEmpty {
-                values.append(value)
-            } else {
-                values.append(nextPartialResult(values.last!, value))
-            }
-        }
-        return values
+        return Array(Accumulator(sequence: self, accumulate: nextPartialResult))
     }
 }
 
@@ -51,7 +43,7 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator for accumulating sequence values. See the `accumulate(_:)` LazySequenceProtocol method.
+/// An iterator for accumulating sequence values. See the `accumulate(_:)` Sequence and LazySequenceProtocol method.
 public struct Accumulator<S: Sequence>: IteratorProtocol, Sequence {
 
     let sequence: S

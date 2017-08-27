@@ -33,12 +33,7 @@ public extension Sequence {
      - Returns: An array of `times` cycles of self.
      */
     func cycle(times: Int) -> [Iterator.Element] {
-        var cycled: [Iterator.Element] = []
-        cycled.reserveCapacity(underestimatedCount * times)
-        for _ in 0..<times {
-            cycled.append(contentsOf: self)
-        }
-        return cycled
+        return Array(CycleIterator(sequence: self, times: times))
     }
 }
 
@@ -60,7 +55,7 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator for cycling through a collection. See the `cycle` and `cycle(times:)` Sequence methods.
+/// An iterator for cycling through a collection. See the `cycle` and `cycle(times:)` Sequence and LazySequenceProtocol methods.
 public struct CycleIterator<S: Sequence>: IteratorProtocol, LazySequenceProtocol {
 
     let sequence: S
