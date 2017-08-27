@@ -36,4 +36,13 @@ class CounterTests: XCTestCase {
             XCTAssert(values.next() == Double(-index))
         }
     }
+
+    func testLazyMap() {
+        let values = counter(start: 0).map { $0 }
+        for value in values {
+            if value == 100 {
+                break
+            }
+        }
+    }
 }

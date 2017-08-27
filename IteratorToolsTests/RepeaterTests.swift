@@ -37,4 +37,13 @@ class RepeaterTests: XCTestCase {
         var values = repeater(value: 0, times: 0)
         XCTAssert(values.next() == nil)
     }
+
+    func testLazyMap() {
+        let values = repeater(value: 0).map { $0 }
+        for (index, _) in values.enumerated() {
+            if index == 100 {
+                break
+            }
+        }
+    }
 }

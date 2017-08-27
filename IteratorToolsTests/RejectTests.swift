@@ -11,6 +11,8 @@ import XCTest
 
 
 class RejectTests: XCTestCase {
+
+    // MARK: - Eager computation
     
     func testRejectBasic() {
         let values = (1...10).reject { $0 % 2 == 0 }
@@ -25,5 +27,20 @@ class RejectTests: XCTestCase {
     func testRejectEmptyResult() {
         let values = [1, 2, 3, 4, 5].reject { $0 < 10 }
         XCTAssert(values.isEmpty)
+    }
+
+    // MARK: - Lazy computation
+
+    func testLazyReject() {
+        var values = [1, 2, 3, 4, 5].lazy.reject { $0 % 2 == 0 }
+        XCTAssert(values.next()! == 1)
+        XCTAssert(values.next()! == 3)
+        XCTAssert(values.next()! == 5)
+        XCTAssert(values.next() == nil)
+    }
+
+    func testLazyRejectEmpty() {
+        var values = [].lazy.reject { $0 }
+        XCTAssert(values.next() == nil)
     }
 }

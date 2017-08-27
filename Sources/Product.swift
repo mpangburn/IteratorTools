@@ -12,7 +12,7 @@ import Foundation
 /**
  Returns an iterator for the Cartesian product of the sequences.
  ```
- var values = product([1, 2, 3], [4, 5, 6, 7], [8, 9])
+ let values = product([1, 2, 3], [4, 5, 6, 7], [8, 9])
  // [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ...
  ```
  - Parameter sequences: The sequences from which to compute the product.
@@ -26,7 +26,7 @@ public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduc
 /**
  Returns an iterator for the Cartesian product of two sequences.
  ```
- var values = product(["a", "b"], [1, 2, 3])
+ let values = product(["a", "b"], [1, 2, 3])
  // ("a", 1), ("a", 2), ("a", 3), ("b", 1), ("b", 2), ("b", 3)
  ```
  - Parameters:

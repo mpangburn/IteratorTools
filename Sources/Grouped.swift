@@ -14,10 +14,10 @@ public extension Sequence {
     /**
      Returns an iterator that returns consecutive keys and groups from the sequence.
      Groups are made based on the element's output from the given key function.
-     A group is cut as soon as the sequence's iterator's next value produces a different key.
+     A group is cut as soon as the sequence's next value produces a different key.
      Generally, the sequence should be sorted on the same key function to group all values with the same key.
      ```
-     var values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+     let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
      // (key: 0, elements: [0, 3, 6, 9])
      // (key: 1, elements: [1, 4, 7, 10])
      // (key: 2, elements: [2, 5, 8])
@@ -34,19 +34,17 @@ public extension Sequence {
 /// An iterator that returns consecutive keys and groups from a sequence. See the `grouped(by:)` Sequence method.
 public struct Grouper<S: Sequence, Key: Equatable>: IteratorProtocol, Sequence {
 
-    public typealias IteratorElement = S.Iterator.Element
-
     var iterator: S.Iterator
-    let key: (IteratorElement) -> Key
+    let key: (S.Iterator.Element) -> Key
     var currentKey: Key?
-    var currentValues: [IteratorElement] = []
+    var currentValues: [S.Iterator.Element] = []
 
-    init(sequence: S, key: @escaping (IteratorElement) -> Key) {
+    init(sequence: S, key: @escaping (S.Iterator.Element) -> Key) {
         self.iterator = sequence.makeIterator()
         self.key = key
     }
 
-    public mutating func next() -> (key: Key, elements: [IteratorElement])? {
+    public mutating func next() -> (key: Key, elements: [S.Iterator.Element])? {
         if currentKey == nil {
             guard let next = iterator.next() else {
                 return nil

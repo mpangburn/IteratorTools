@@ -12,10 +12,10 @@ import Foundation
 /**
  Returns an iterator repeating a value, either infinitely or a specified number of times.
  ```
- var values = repeater(value: 0)
+ let values = repeater(value: 0)
  // 0, 0, 0, 0, ...
  
- var values = repeater(value, 0, times: 3)
+ let values = repeater(value, 0, times: 3)
  // 0, 0, 0
  ```
  - Parameters:

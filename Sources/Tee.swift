@@ -17,6 +17,6 @@ public extension Sequence {
      - Returns: `n` independent iterators from the sequence.
      */
     func tee(_ n: Int) -> [Iterator] {
-        return (0..<n).map { _ in self.makeIterator() }
+        return Array(repeating: makeIterator(), count: n)
     }
 }

@@ -12,7 +12,7 @@ import Foundation
 /**
  Returns an iterator beginning at `start` and incrementing by `step`.
  ```
- var values = counter(start: 1, step: 2)
+ let values = counter(start: 1, step: 2)
  // 1, 3, 5, 7, 9, ...
  ```
  - Parameters:

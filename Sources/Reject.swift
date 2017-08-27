@@ -12,16 +12,55 @@ import Foundation
 public extension Sequence {
 
     /**
-     Returns the array elements from the sequence for which the predicate is false.
+     Returns an array containing only the elements from the sequence for which the predicate is false.
      ```
-     var values = [1, 2, 3, 4, 5].reject { $0 % 2 == 0 }
+     let values = [1, 2, 3, 4, 5].reject { $0 % 2 == 0 }
      // [1, 3, 5]
      ```
      - Parameter predicate: The predicate used to determine whether the elements should be included in the result. 
         Elements are included only when the predicate is false.
-     - Returns: The array elements from the sequence for which the predicate is false.     
+     - Returns: An array containing only the elements from the sequence for which the predicate is false.
      */
     func reject(predicate: @escaping (Iterator.Element) -> Bool) -> [Iterator.Element] {
         return filter { !predicate($0) }
+    }
+}
+
+
+public extension LazySequenceProtocol {
+
+    /**
+     Returns an iterator that returns only the elements from the sequence for which the predicate is false.
+     ```
+     let values = [1, 2, 3, 4, 5].lazy.reject { $0 % 2 == 0 }
+     // 1, 3, 5
+     ```
+     - Parameter predicate: The predicate used to determine whether the elements should be included in the result.
+        Elements are included only when the predicate is false.
+     - Returns: An iterator that returns only the elements from the sequence for which the predicate is false.
+     */
+    func reject(predicate: @escaping (Iterator.Element) -> Bool) -> Rejector<Self> {
+        return Rejector(sequence: self, predicate: predicate)
+    }
+}
+
+
+/// An iterator that rejects values that do not meet the predicate. See the `reject(predicate:)` LazySequenceProtocol method.
+public struct Rejector<S: Sequence>: IteratorProtocol, Sequence {
+
+    var iterator: S.Iterator
+    let predicate: (S.Iterator.Element) -> Bool
+
+    init(sequence: S, predicate: @escaping (S.Iterator.Element) -> Bool) {
+        self.iterator = sequence.makeIterator()
+        self.predicate = predicate
+    }
+
+    public mutating func next() -> S.Iterator.Element? {
+        guard let next = iterator.next() else {
+            return nil
+        }
+
+        return !predicate(next) ? next : self.next()
     }
 }
