@@ -18,13 +18,30 @@ import Foundation
  - Parameter sequences: The sequences from which to compute the product.
  - Returns: An iterator for the Cartesian product of the sequences.
  */
-public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProductIterator<S> {
-    return SingleTypeCartesianProductIterator(sequences)
+public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduct<S> {
+    return SingleTypeCartesianProduct(sequences)
 }
 
 
 /**
- Returns an iterator for the Cartesian product of two sequences.
+ Returns an iterator for the Cartesian product of the sequence repeated with itself a number of times.
+ ```
+ let values = product([1, 2, 3], repeated: 2)
+ // Equivalent to product([1, 2, 3], [1, 2, 3])
+ ```
+ - Parameters:
+    - sequence: The sequence from which to compute the product.
+    - repeated: The number of times to repeat the sequence with itself in computing the product.
+ - Returns: An iterator for the Cartesian product of the sequence repeated with itself a number of times.
+ */
+public func product<S: Sequence>(_ sequence: S, repeated: Int) -> SingleTypeCartesianProduct<S> {
+    let sequences = Array(repeating: sequence, count: repeated)
+    return SingleTypeCartesianProduct(sequences)
+}
+
+
+/**
+ Returns an iterator for the Cartesian product of two sequences containing elements of different types.
  ```
  let values = product(["a", "b"], [1, 2, 3])
  // ("a", 1), ("a", 2), ("a", 3), ("b", 1), ("b", 2), ("b", 3)
@@ -32,15 +49,16 @@ public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduc
  - Parameters:
     - firstSequence: The first of the two sequences used in computing the product.
     - secondSequence: The second of the two sequences used in computing the product.
- - Returns: An iterator for the Cartesian product of two sequences.
+ - Returns: An iterator for the Cartesian product of two sequences containing elements of different types.
  */
-public func product<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2) -> MixedTypeCartesianProductIterator<S1, S2> {
-    return MixedTypeCartesianProductIterator(firstSequence, secondSequence)
+public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2) -> MixedTypeCartesianProduct<S1, S2> {
+    // If this function is named `product`, "ambiguous reference to `product`" error arises
+    return MixedTypeCartesianProduct(firstSequence, secondSequence)
 }
 
 
 /// An iterator for the Cartesian product of multiple sequences of the same type. See `product(_:)`.
-public struct SingleTypeCartesianProductIterator<S: Sequence>: IteratorProtocol, Sequence {
+public struct SingleTypeCartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 
     let sequences: [S]
     var iterators: [S.Iterator]
@@ -54,7 +72,7 @@ public struct SingleTypeCartesianProductIterator<S: Sequence>: IteratorProtocol,
     public mutating func next() -> [S.Iterator.Element]? {
         guard !currentValues.isEmpty else {
             var firstValues: [S.Iterator.Element] = []
-            for index in 0..<iterators.count {
+            for index in iterators.indices {
                 guard let value = iterators[index].next() else {
                     return nil
                 }
@@ -64,16 +82,18 @@ public struct SingleTypeCartesianProductIterator<S: Sequence>: IteratorProtocol,
             return firstValues
         }
 
-        for index in (0..<currentValues.count).reversed() {
+        for index in currentValues.indices.reversed() {
             if let value = iterators[index].next() {
                 currentValues[index] = value
                 return currentValues
-            } else if index == 0 {
-                return nil
-            } else {
-                iterators[index] = sequences[index].makeIterator()
-                currentValues[index] = iterators[index].next()!
             }
+
+            guard index != 0 else {
+                return nil
+            }
+
+            iterators[index] = sequences[index].makeIterator()
+            currentValues[index] = iterators[index].next()!
         }
 
         return currentValues
@@ -82,7 +102,7 @@ public struct SingleTypeCartesianProductIterator<S: Sequence>: IteratorProtocol,
 
 
 /// An iterator for the Cartesian product of two sequences of different types. See `product(_:_:)`.
-public struct MixedTypeCartesianProductIterator<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
+public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
     let secondSequence: S2
     var firstIterator: S1.Iterator

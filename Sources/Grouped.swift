@@ -66,14 +66,14 @@ public struct Grouper<S: Sequence, Key: Equatable>: IteratorProtocol, Sequence {
             }
         }
 
-        if !currentValues.isEmpty {
-            let lastKey = currentKey!
-            let lastValues = currentValues
-            currentKey = nil
-            currentValues = []
-            return (lastKey, lastValues)
-        } else {
+        guard !currentValues.isEmpty else {
             return nil
         }
+
+        let lastKey = currentKey!
+        let lastValues = currentValues
+        currentKey = nil
+        currentValues = []
+        return (lastKey, lastValues)
     }
 }
