@@ -12,15 +12,32 @@ import Foundation
 public extension Sequence {
 
     /**
+     Returns an array of consecutive keys and groups from the sequence.
+     Groups are made based on the element's output from the given key function.
+     A group is cut as soon as the sequence's next value produces a different key.
+     Generally, the sequence should be sorted on the same key function to group all values with the same key.
+     ```
+     let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+     // [(key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])]
+     ```
+     - Parameter key: The key function used in determining groups.
+     - Returns: An array of consecutive keys and groups from the sequence.
+     */
+    func grouped<Key: Equatable>(by key: @escaping (Iterator.Element) -> Key) -> [(key: Key, elements: [Iterator.Element])] {
+        return Array(Grouper(sequence: self, key: key))
+    }
+}
+
+public extension LazySequenceProtocol {
+
+    /**
      Returns an iterator-sequence that returns consecutive keys and groups from the sequence.
      Groups are made based on the element's output from the given key function.
      A group is cut as soon as the sequence's next value produces a different key.
      Generally, the sequence should be sorted on the same key function to group all values with the same key.
      ```
      let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
-     // (key: 0, elements: [0, 3, 6, 9])
-     // (key: 1, elements: [1, 4, 7, 10])
-     // (key: 2, elements: [2, 5, 8])
+     // (key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])
      ```
      - Parameter key: The key function used in determining groups.
      - Returns: An iterator-sequence that returns consecutive keys and groups from the sequence.
