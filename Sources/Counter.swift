@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- Returns an iterator beginning at `start` and incrementing by `step`.
+ Returns an iterator-sequence beginning at `start` and incrementing by `step`.
  ```
  let values = counter(start: 1, step: 2)
  // 1, 3, 5, 7, 9, ...
@@ -18,14 +18,15 @@ import Foundation
  - Parameters:
     - start: The starting value for the counter.
     - step: The value by which to increment.
- - Returns: An iterator beginning at `start` and incrementing by `step`.
+ - Returns: An iterator-sequence beginning at `start` and incrementing by `step`.
  */
 public func counter(start: Double, step: Double = 1) -> Counter {
     return Counter(start: start, step: step)
 }
 
 
-/// An iterator that functions as a simple incremental counter. See `counter(start:step:)`
+/// An iterator-sequence that functions as a simple incremental counter. 
+/// See `counter(start:step:)`
 public struct Counter: IteratorProtocol, LazySequenceProtocol {
 
     var start: Double

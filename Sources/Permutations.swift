@@ -12,7 +12,7 @@ import Foundation
 public extension Sequence {
 
     /**
-     Returns an array containing the permutations of elements in the sequence.
+     Returns an array containing the permutations of elements in the sequence, optionally of a specified length.
      ```
      let values = [1, 2, 3].permutations()
      // [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
@@ -20,6 +20,7 @@ public extension Sequence {
      let values = [1, 2, 3].permutations(length: 2)
      // [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
      ```
+     - Parameter length: The length of the permutations to return. Defaults to the length of the sequence.
      - Returns: An array containing the permutations of elements in the sequence.
      */
     func permutations(length: Int? = nil) -> [[Iterator.Element]] {
@@ -31,7 +32,7 @@ public extension Sequence {
 public extension LazySequenceProtocol {
 
     /**
-     Returns an iterator that returns the permutations of elements in the sequence.
+     Returns an iterator-sequence that returns the permutations of elements in the sequence, optionally of a specified length.
      ```
      let values = [1, 2, 3].lazy.permutations()
      // [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
@@ -39,7 +40,8 @@ public extension LazySequenceProtocol {
      let values = [1, 2, 3].lazy.permutations(length: 2)
      // [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]
      ```
-     - Returns: An iterator that returns the permutations of elements in the sequence.
+     - Parameter length: The length of the permutations to return. Defaults to the length of the sequence.
+     - Returns: An iterator-sequence that returns the permutations of elements in the sequence.
      */
     func permutations(length: Int? = nil) -> Permutations<Self> {
         return Permutations(sequence: self, length: length)
@@ -47,11 +49,11 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator that returns the permutations of elements in a sequence. 
+/// An iterator-sequence that returns the permutations of elements in a sequence. 
 /// See the `permutations` and `permutations(length:)` Sequence and LazySequenceProtocol methods.
 public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
 
-    var values: [S.Iterator.Element]
+    let values: [S.Iterator.Element]
     let permutationLength: Int
     var indicesIterator: SingleTypeCartesianProduct<CountableRange<Int>>
 

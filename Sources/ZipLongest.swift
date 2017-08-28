@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- Returns an iterator that aggregates elements from each of the sequences. 
+ Returns an iterator-sequence that aggregates elements from each of the sequences. 
  If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. 
  Iteration continues until the longest sequence is exhausted.
  ```
@@ -22,14 +22,14 @@ import Foundation
     - secondSequence: The second of the sequences from which to aggregate elements.
     - firstFillValue: The value to use as a filler in zipping when the second sequence is longer than the first.
     - secondFillValue: The value to use as a filler in zipping when the first sequence is longer than the second.
- - Returns: An iterator that aggregates elements from each of the sequences.
+ - Returns: An iterator-sequence that aggregates elements from each of the sequences.
  */
 public func zipLongest<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2, firstFillValue: S1.Iterator.Element, secondFillValue: S2.Iterator.Element) -> ZipLongest<S1, S2> {
         return ZipLongest(firstSequence, secondSequence, firstFillValue: firstFillValue, secondFillValue: secondFillValue)
 }
 
 
-/// An iterator that aggregates elements from two sequences, filling in with values when one sequence is longer than the other.
+/// An iterator-sequence that aggregates elements from two sequences, filling in with values when one sequence is longer than the other.
 /// See `zipLongest(_:_:firstFillValue:secondFillValue:)`.
 public struct ZipLongest<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 

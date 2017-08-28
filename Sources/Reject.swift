@@ -30,14 +30,14 @@ public extension Sequence {
 public extension LazySequenceProtocol {
 
     /**
-     Returns an iterator that returns only the elements from the sequence for which the predicate is false.
+     Returns an iterator-sequence that returns only the elements from the sequence for which the predicate is false.
      ```
      let values = [1, 2, 3, 4, 5].lazy.reject { $0 % 2 == 0 }
      // 1, 3, 5
      ```
      - Parameter predicate: The predicate used to determine whether the elements should be included in the result.
         Elements are included only when the predicate is false.
-     - Returns: An iterator that returns only the elements from the sequence for which the predicate is false.
+     - Returns: An iterator-sequence that returns only the elements from the sequence for which the predicate is false.
      */
     func reject(predicate: @escaping (Iterator.Element) -> Bool) -> Rejector<Self> {
         return Rejector(sequence: self, predicate: predicate)
@@ -45,7 +45,8 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator that rejects values that do not meet the predicate. See the `reject(predicate:)` LazySequenceProtocol method.
+/// An iterator-sequence that rejects values that do not meet the predicate. 
+/// See the `reject(predicate:)` LazySequenceProtocol method.
 public struct Rejector<S: Sequence>: IteratorProtocol, Sequence {
 
     var iterator: S.Iterator

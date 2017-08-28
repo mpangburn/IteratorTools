@@ -29,13 +29,13 @@ public extension Sequence {
 public extension LazySequenceProtocol {
 
     /**
-     Returns an iterator for consecutively accumulating the sequence's values.
+     Returns an iterator-sequence for consecutively accumulating the sequence's values.
      ```
      let values = [1, 2, 3, 4].lazy.accumulate(+)
      // 1, 3, 6, 10
      ```
      - Parameter nextPartialResult: The function used to accumulate the sequence's values.
-     - Returns: An iterator consecutively accumulating the sequence's values.
+     - Returns: An iterator-sequence consecutively accumulating the sequence's values.
      */
     func accumulate(_ nextPartialResult: @escaping (Iterator.Element, Iterator.Element) -> Iterator.Element) -> Accumulator<Self> {
         return Accumulator(sequence: self, accumulate: nextPartialResult)
@@ -43,7 +43,8 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator for accumulating sequence values. See the `accumulate(_:)` Sequence and LazySequenceProtocol method.
+/// An iterator-sequence for accumulating sequence values. 
+/// See the `accumulate(_:)` Sequence and LazySequenceProtocol method.
 public struct Accumulator<S: Sequence>: IteratorProtocol, Sequence {
 
     let sequence: S

@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- Returns an iterator that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
+ Returns an iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
  Stops when either `data` or `selectors` has been exhausted.
  ```
  let values = compress([1, 2, 3, 4], [true, true, false, true])
@@ -19,14 +19,15 @@ import Foundation
  - Parameters:
     - data: The data to filter.
     - selectors: The selectors used in filtering the data.
- - Returns: An iterator that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
+ - Returns: An iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
  */
 public func compress<S1, S2>(data: S1, selectors: S2) -> Compressor<S1, S2> {
     return Compressor(data: data, selectors: selectors)
 }
 
 
-/// An iterator for filtering data based on corresponding selectors. See `compress(data:selectors:)`.
+/// An iterator-sequence for filtering data based on corresponding selectors. 
+/// See `compress(data:selectors:)`.
 public struct Compressor<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence where S2.Iterator.Element == Bool {
 
     var dataIterator: S1.Iterator

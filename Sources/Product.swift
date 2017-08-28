@@ -10,13 +10,13 @@ import Foundation
 
 
 /**
- Returns an iterator for the Cartesian product of the sequences.
+ Returns an iterator-sequence for the Cartesian product of the sequences.
  ```
  let values = product([1, 2, 3], [4, 5, 6, 7], [8, 9])
  // [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ...
  ```
  - Parameter sequences: The sequences from which to compute the product.
- - Returns: An iterator for the Cartesian product of the sequences.
+ - Returns: An iterator-sequence for the Cartesian product of the sequences.
  */
 public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduct<S> {
     return SingleTypeCartesianProduct(sequences)
@@ -24,7 +24,7 @@ public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduc
 
 
 /**
- Returns an iterator for the Cartesian product of the sequence repeated with itself a number of times.
+ Returns an iterator-sequence for the Cartesian product of the sequence repeated with itself a number of times.
  ```
  let values = product([1, 2, 3], repeated: 2)
  // Equivalent to product([1, 2, 3], [1, 2, 3])
@@ -32,7 +32,7 @@ public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduc
  - Parameters:
     - sequence: The sequence from which to compute the product.
     - repeated: The number of times to repeat the sequence with itself in computing the product.
- - Returns: An iterator for the Cartesian product of the sequence repeated with itself a number of times.
+ - Returns: An iterator-sequence for the Cartesian product of the sequence repeated with itself a number of times.
  */
 public func product<S: Sequence>(_ sequence: S, repeated: Int) -> SingleTypeCartesianProduct<S> {
     let sequences = Array(repeating: sequence, count: repeated)
@@ -41,7 +41,7 @@ public func product<S: Sequence>(_ sequence: S, repeated: Int) -> SingleTypeCart
 
 
 /**
- Returns an iterator for the Cartesian product of two sequences containing elements of different types.
+ Returns an iterator-sequence for the Cartesian product of two sequences containing elements of different types.
  ```
  let values = product(["a", "b"], [1, 2, 3])
  // ("a", 1), ("a", 2), ("a", 3), ("b", 1), ("b", 2), ("b", 3)
@@ -49,7 +49,7 @@ public func product<S: Sequence>(_ sequence: S, repeated: Int) -> SingleTypeCart
  - Parameters:
     - firstSequence: The first of the two sequences used in computing the product.
     - secondSequence: The second of the two sequences used in computing the product.
- - Returns: An iterator for the Cartesian product of two sequences containing elements of different types.
+ - Returns: An iterator-sequence for the Cartesian product of two sequences containing elements of different types.
  */
 public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2) -> MixedTypeCartesianProduct<S1, S2> {
     // If this function is named `product`, "ambiguous reference to `product`" error arises
@@ -57,7 +57,8 @@ public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ seco
 }
 
 
-/// An iterator for the Cartesian product of multiple sequences of the same type. See `product(_:)`.
+/// An iterator-sequence for the Cartesian product of multiple sequences of the same type. 
+/// See `product(_:)`.
 public struct SingleTypeCartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 
     let sequences: [S]
@@ -101,7 +102,7 @@ public struct SingleTypeCartesianProduct<S: Sequence>: IteratorProtocol, Sequenc
 }
 
 
-/// An iterator for the Cartesian product of two sequences of different types. See `product(_:_:)`.
+/// An iterator-sequence for the Cartesian product of two sequences of different types. See `product(_:_:)`.
 public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
     let secondSequence: S2
