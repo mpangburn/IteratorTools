@@ -21,27 +21,30 @@ Functions such as `product`, however, are better semantically suited as free fun
 
 The table below lists the functions provided by Python's itertools and their Swift IteratorTools counterparts.
 
-| itertools                       | Free Function(s)                                  | Method(s)                                                   | Notes                              | 
-|---------------------------------|---------------------------------------------------|-------------------------------------------------------------|------------------------------------| 
-| `accumulate`                    | -                                                 | `accumulate(_:)`                                            |                                    | 
-| `chain`                         | `chain(_:)`                                       | -                                                           |                                    | 
-| `chain.from_iterable`           | `chain(_:)`                                       | -                                                           |                                    | 
-| `combinations`                  | -                                                 | `combinations(length:)`                                     |                                    | 
-| `combinations_with_replacement` | -                                                 | `combinationsWithReplacement(length:)`                      |                                    | 
-| `compress`                      | `compress(data:selectors:)`                       | -                                                           |                                    | 
-| `count`                         | `counter()`, `counter(start:step:)`               | -                                                           |                                    | 
-| `cycle`                         | -                                                 | `cycle()`, `cycle(times:)`                                  |                                    | 
-| `dropwhile`                     | -                                                 | `drop(while:)`                                              | Provided by Swift standard library | 
-| `filterfalse`                   | -                                                 | `reject(predicate:)`                                        | Renamed for clarity                | 
-| `groupby`                       | -                                                 | `grouped(by:)`                                              |                                    | 
-| `islice`                        | -                                                 | `stride(from:to:by:)`                                       | Provided by Swift standard library | 
-| `permutations`                  | -                                                 | `permutations()`, `permutations(length:)`                   |                                    | 
-| `product`                       | -                                                 | `product(_:)`, `product(_:repeated:_`, `mixedProduct(_:_:)` | See distinctions below             | 
-| `repeat`                        | `repeater(value:)`, `repeater(value:times:)`      | -                                                           | `repeat` keyword taken in Swift    | 
-| `starmap`                       | -                                                 | -                                                           | No appropriate Swift equivalent    | 
-| `takewhile`                     | -                                                 | `prefix(while:)`                                            | Provided by Swift standard library | 
-| `tee`                           | -                                                 | `tee(_:)`                                                   |                                    | 
-| `zip_longest`                   | `zipLongest(_:_:firstFillValue:secondFillValue:)` | -  
+|                                 |                                                             |                                           |                                    | 
+|---------------------------------|-------------------------------------------------------------|-------------------------------------------|------------------------------------| 
+| itertools                       | Free Function(s)                                            | Method(s)                                 | Notes                              | 
+| `accumulate`                    | -                                                           | `accumulate(_:)`                          |                                    | 
+| `chain`                         | `chain(_:)`                                                 | -                                         |                                    | 
+| `chain.from_iterable`           | `chain(_:)`                                                 | -                                         |                                    | 
+| `combinations`                  | -                                                           | `combinations(length:)`                   |                                    | 
+| `combinations_with_replacement` | -                                                           | `combinationsWithReplacement(length:)`    |                                    | 
+| `compress`                      | `compress(data:selectors:)`                                 | -                                         |                                    | 
+| `count`                         | `counter()`, `counter(start:step:)`                         | -                                         |                                    | 
+| `cycle`                         | -                                                           | `cycle()`, `cycle(times:)`                |                                    | 
+| `dropwhile`                     | -                                                           | `drop(while:)`                            | Provided by Swift standard library | 
+| `filterfalse`                   | -                                                           | `reject(predicate:)`                      | Renamed for clarity                | 
+| `groupby`                       | -                                                           | `grouped(by:)`                            |                                    | 
+| `islice`                        | -                                                           | `stride(from:to:by:)`                     | Provided by Swift standard library | 
+| `permutations`                  | -                                                           | `permutations()`, `permutations(length:)` |                                    | 
+| `product`                       | `product(_:)`, `product(_:repeated:_`, `mixedProduct(_:_:)` |                                           | See distinctions below             | 
+| `repeat`                        | `repeater(value:)`, `repeater(value:times:)`                | -                                         | `repeat` keyword taken in Swift    | 
+| `starmap`                       | -                                                           | -                                         | No appropriate Swift equivalent    | 
+| `takewhile`                     | -                                                           | `prefix(while:)`                          | Provided by Swift standard library | 
+| `tee`                           | -                                                           | `tee(_:)`                                 |                                    | 
+| `zip_longest`                   | `zipLongest(_:_:firstFillValue:secondFillValue:)`           | -                                         |                                    | 
+
+
 
 ## Free Functions
 ### counter(start:step:)
