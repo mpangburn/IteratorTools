@@ -19,6 +19,11 @@ let values = [1, 2, 3].lazy.cycle(times: 2)
 ```
 Functions such as `product`, however, are better semantically suited as free functions. The free functions in IteratorTools always compute lazily.
 
+```swift
+let values = product([1, 2, 3], [4, 5, 6])
+// [1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ...
+```
+
 The table below lists the functions provided by Python's itertools and their Swift counterparts.
 
 | itertools                       | Free Function(s)                                            | Method(s)                                 | Notes                              | 
