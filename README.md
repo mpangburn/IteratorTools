@@ -21,9 +21,8 @@ Functions such as `product`, however, are better semantically suited as free fun
 
 The table below lists the functions provided by Python's itertools and their Swift IteratorTools counterparts.
 
-|                                 |                                                             |                                           |                                    | 
-|---------------------------------|-------------------------------------------------------------|-------------------------------------------|------------------------------------| 
 | itertools                       | Free Function(s)                                            | Method(s)                                 | Notes                              | 
+|---------------------------------|-------------------------------------------------------------|-------------------------------------------|------------------------------------| 
 | `accumulate`                    | -                                                           | `accumulate(_:)`                          |                                    | 
 | `chain`                         | `chain(_:)`                                                 | -                                         |                                    | 
 | `chain.from_iterable`           | `chain(_:)`                                                 | -                                         |                                    | 
