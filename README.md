@@ -6,7 +6,7 @@ Python's `Iterator` and `Iterable` are equivalent to Swift's `IteratorProtocol` 
 
 Due to the nature of Swift's static typing system, some functions cannot be generalized to the extent to which they are in Python. These limitations are noted where appropriate in the function descriptions below.
 
-## Free Functions and Methods
+### Free Functions and Methods
 
 While Python favors free functions, Swift favors methods. Where applicable, methods are implemented eagerly as Sequence extensions and lazily as LazySequenceProtocol extensions. For example:
 
@@ -19,7 +19,7 @@ let values = [1, 2, 3].lazy.cycle(times: 2)
 ```
 Functions such as `product`, however, are better semantically suited as free functions. The free functions in IteratorTools always compute lazily.
 
-The table below lists the functions provided by Python's itertools and their Swift IteratorTools counterparts.
+The table below lists the functions provided by Python's itertools and their Swift counterparts.
 
 | itertools                       | Free Function(s)                                            | Method(s)                                 | Notes                              | 
 |---------------------------------|-------------------------------------------------------------|-------------------------------------------|------------------------------------| 
@@ -44,15 +44,4 @@ The table below lists the functions provided by Python's itertools and their Swi
 | `zip_longest`                   | `zipLongest(_:_:firstFillValue:secondFillValue:)`           | -                                         |                                    | 
 
 
-
-## Free Functions
-### counter(start:step:)
-
-
-```swift
-var values = counter()
-// 0, 1, 2, 3, ...
-
-var values = counter(start: 1, step: 2)
-// 1, 3, 5, 7, ...
-```
+Free function and method detail to come shortly.
