@@ -24,6 +24,21 @@ public func chain<S: Sequence>(_ sequences: S...) -> Chain<S> {
 }
 
 
+/**
+ Returns an iterator-sequence that returns values from each sequence until all are exhausted.
+ Used for treating consecutive sequences as a single sequence.
+ ```
+ let values = chain([[1, 2, 3], [4, 5, 6]])
+ // 1, 2, 3, 4, 5, 6
+ ```
+ - Parameter sequences: The sequences to chain.
+ - Returns: An iterator-sequence that returns values from each sequence until all are exhausted.
+ */
+public func chain<S: Sequence>(_ sequenceArray: [S]) -> Chain<S> {
+    return Chain(sequences: sequenceArray)
+}
+
+
 /// An iterator-sequence for chaining sequences. 
 /// See `chain(_:)`.
 public struct Chain<S: Sequence>: IteratorProtocol, Sequence {

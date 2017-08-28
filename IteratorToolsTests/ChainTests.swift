@@ -12,7 +12,7 @@ import XCTest
 
 class ChainTests: XCTestCase {
     
-    func testChainBasic() {
+    func testChainTwoSequences() {
         var values = chain([1, 2, 3], [4, 5, 6])
         for index in 1...6 {
             XCTAssert(values.next() == index)
@@ -20,7 +20,7 @@ class ChainTests: XCTestCase {
         XCTAssert(values.next() == nil)
     }
 
-    func testVariedLengthChain() {
+    func testChainVariedLengths() {
         var values = chain([], [1], [2, 3], [4, 5, 6], [7, 8, 9], [10])
         for index in 1...10 {
             XCTAssert(values.next() == index)
@@ -28,8 +28,24 @@ class ChainTests: XCTestCase {
         XCTAssert(values.next() == nil)
     }
 
+    func testChainSingleSequence() {
+        var values = chain([1, 2, 3])
+        for index in 1...3 {
+            XCTAssert(values.next() == index)
+        }
+        XCTAssert(values.next() == nil)
+    }
+
     func testChainEmpty() {
         var values = chain([], [], [])
+        XCTAssert(values.next() == nil)
+    }
+
+    func testChainSequenceArray() {
+        var values = chain([[1, 2, 3], [4, 5, 6]])
+        for index in 1...6 {
+            XCTAssert(values.next() == index)
+        }
         XCTAssert(values.next() == nil)
     }
 }
