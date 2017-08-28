@@ -18,8 +18,8 @@ import Foundation
  - Parameter sequences: The sequences from which to compute the product.
  - Returns: An iterator-sequence for the Cartesian product of the sequences.
  */
-public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduct<S> {
-    return SingleTypeCartesianProduct(sequences)
+public func product<S: Sequence>(_ sequences: S...) -> CartesianProduct<S> {
+    return CartesianProduct(sequences)
 }
 
 
@@ -34,9 +34,9 @@ public func product<S: Sequence>(_ sequences: S...) -> SingleTypeCartesianProduc
     - repeated: The number of times to repeat the sequence with itself in computing the product.
  - Returns: An iterator-sequence for the Cartesian product of the sequence repeated with itself a number of times.
  */
-public func product<S: Sequence>(_ sequence: S, repeated: Int) -> SingleTypeCartesianProduct<S> {
+public func product<S: Sequence>(_ sequence: S, repeated: Int) -> CartesianProduct<S> {
     let sequences = Array(repeating: sequence, count: repeated)
-    return SingleTypeCartesianProduct(sequences)
+    return CartesianProduct(sequences)
 }
 
 
@@ -59,7 +59,7 @@ public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ seco
 
 /// An iterator-sequence for the Cartesian product of multiple sequences of the same type. 
 /// See `product(_:)`.
-public struct SingleTypeCartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
+public struct CartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 
     let sequences: [S]
     var iterators: [S.Iterator]

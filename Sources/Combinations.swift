@@ -104,7 +104,7 @@ public struct CombinationsWithReplacement<S: Sequence>: IteratorProtocol, Sequen
 
     let values: [S.Iterator.Element]
     let combinationLength: Int
-    var indicesIterator: SingleTypeCartesianProduct<CountableRange<Int>>
+    var indicesIterator: CartesianProduct<CountableRange<Int>>
 
     init(sequence: S, length: Int) {
         self.values = Array(sequence)

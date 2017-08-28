@@ -33,6 +33,6 @@ class TeeTests: XCTestCase {
 
     func testTeeZero() {
         let iterators = [1, 2, 3].tee(0)
-        XCTAssert(iterators.count == 0)
+        XCTAssert(iterators.isEmpty)
     }
 }

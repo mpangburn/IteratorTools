@@ -55,7 +55,7 @@ public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
 
     let values: [S.Iterator.Element]
     let permutationLength: Int
-    var indicesIterator: SingleTypeCartesianProduct<CountableRange<Int>>
+    var indicesIterator: CartesianProduct<CountableRange<Int>>
 
     init(sequence: S, length: Int?) {
         self.values = Array(sequence)
