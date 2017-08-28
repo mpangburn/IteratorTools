@@ -20,7 +20,7 @@ import Foundation
     - step: The value by which to increment.
  - Returns: An iterator-sequence beginning at `start` and incrementing by `step`.
  */
-public func counter(start: Double, step: Double = 1) -> Counter {
+public func counter(start: Double = 0, step: Double = 1) -> Counter {
     return Counter(start: start, step: step)
 }
 

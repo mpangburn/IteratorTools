@@ -13,7 +13,7 @@ import XCTest
 class CounterTests: XCTestCase {
 
     func testCounterBasic() {
-        var values = counter(start: 0)
+        var values = counter()
         XCTAssert(values.start == 0)
         XCTAssert(values.step == 1)
         XCTAssert(values.next() == 0)
@@ -38,7 +38,7 @@ class CounterTests: XCTestCase {
     }
 
     func testLazyMap() {
-        let values = counter(start: 0).map { $0 }
+        let values = counter().map { $0 }
         for value in values {
             if value == 100 {
                 break
