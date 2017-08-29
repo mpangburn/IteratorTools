@@ -32,7 +32,7 @@ Python's `iterator` and `iterable` protocols are equivalent to Swift's [`Iterato
 
 Due to the nature of Swift's strong, static typing system, some functions cannot be generalized to the extent to which they are in Python. These limitations are noted where appropriate in the function descriptions below.
 
-#### Free Functions and Methods
+### Free Functions and Methods
 While Python favors free functions, Swift favors methods. Where applicable, methods are implemented eagerly as Sequence extensions (returning arrays) and lazily as LazySequenceProtocol extensions (returning iterator-sequences). For example:
 
 ```swift
@@ -83,7 +83,7 @@ The iterator-sequences returned by `counter(start:step:)`, `repeater(value:)`, a
 The iterator-sequences returned by `repeater(value:times:)` and the lazy version of `cycle(times:)`, though finite, are of the same types as those produced by their infinite counterparts.
 
 ## Documentation
-#### Free Functions
+### Free Functions
 ##### `chain(_:)`
 Returns an iterator-sequence that returns values from each sequence until all are exhausted. This function is used for treating consecutive sequences as a single sequence. `chain(_:)` is overloaded to accept either any number of sequences or an array of sequences as parameters.
 
