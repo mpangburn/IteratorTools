@@ -2,7 +2,7 @@
 A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools.html).
 
 ## From Python to Swift
-Python's `Iterator` and `Iterable` are equivalent to Swift's `IteratorProtocol` and `Sequence`. In Python, every `Iterator` must also be an `Iterable`. Though Swift has no such constraint, the return types of IteratorTools functions implement both `IteratorProtocol` and `Sequence` (or, in special cases, `LazySequenceProtocol`) to follow Python's pattern and to reduce boilerplate code. These types will henceforth be referred to as iterator-sequences.
+Python's `iterator` and `iterable` protocols are equivalent to Swift's [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol) and [Sequence](https://developer.apple.com/documentation/swift/sequence). In Python, every `iterator` must also be an `iterable`. Though Swift has no such constraint, the return types of IteratorTools functions implement both `IteratorProtocol` and `Sequence` (or, in [special cases](https://github.com/mpangburn/IteratorTools#infinite-iterator-sequences), `LazySequenceProtocol`) to follow Python's pattern and to reduce boilerplate code. These types will henceforth be referred to as iterator-sequences.
 
 Due to the nature of Swift's strong, static typing system, some functions cannot be generalized to the extent to which they are in Python. These limitations are noted where appropriate in the function descriptions below.
 
