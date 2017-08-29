@@ -2,12 +2,11 @@
 A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools.html).
 
 ## From Python to Swift
-Python's `Iterator` and `Iterable` are equivalent to Swift's `IteratorProtocol` and `Sequence`. In Python, every `Iterator` must also be an `Iterable`. Though Swift has no such constraint, the return types of most IteratorTools functions implement both `IteratorProtocol` and `Sequence` to follow Python's pattern and to reduce boilerplate code. These types will henceforth be referred to as iterator-sequences.
+Python's `Iterator` and `Iterable` are equivalent to Swift's `IteratorProtocol` and `Sequence`. In Python, every `Iterator` must also be an `Iterable`. Though Swift has no such constraint, the return types of IteratorTools functions implement both `IteratorProtocol` and `Sequence` (or, in special cases, `LazySequenceProtocol`) to follow Python's pattern and to reduce boilerplate code. These types will henceforth be referred to as iterator-sequences.
 
 Due to the nature of Swift's strong, static typing system, some functions cannot be generalized to the extent to which they are in Python. These limitations are noted where appropriate in the function descriptions below.
 
 ### Free Functions and Methods
-
 While Python favors free functions, Swift favors methods. Where applicable, methods are implemented eagerly as Sequence extensions (returning arrays) and lazily as LazySequenceProtocol extensions (returning iterator-sequences). For example:
 
 ```swift
@@ -31,25 +30,31 @@ The table below lists the functions provided by Python's itertools and their Swi
 
 | itertools                       | Free Function(s)                                            | Method(s)                                 | Notes                              | 
 |---------------------------------|-------------------------------------------------------------|-------------------------------------------|------------------------------------| 
-| `accumulate`                    | -                                                           | `accumulate(_:)`                          |                                    | 
-| `chain`                         | `chain(_:)`                                                 | -                                         |                                    | 
-| `chain.from_iterable`           | `chain(_:)`                                                 | -                                         |                                    | 
-| `combinations`                  | -                                                           | `combinations(length:)`                   |                                    | 
-| `combinations_with_replacement` | -                                                           | `combinationsWithReplacement(length:)`    |                                    | 
-| `compress`                      | `compress(data:selectors:)`                                 | -                                         |                                    | 
-| `count`                         | `counter()`, `counter(start:step:)`                         | -                                         |                                    | 
-| `cycle`                         | -                                                           | `cycle()`, `cycle(times:)`                |                                    | 
-| `dropwhile`                     | -                                                           | `drop(while:)`                            | Provided by Swift standard library | 
-| `filterfalse`                   | -                                                           | `reject(predicate:)`                      | Renamed for clarity                | 
-| `groupby`                       | -                                                           | `grouped(by:)`                            |                                    | 
-| `islice`                        | -                                                           | `stride(from:to:by:)`                     | Provided by Swift standard library | 
-| `permutations`                  | -                                                           | `permutations()`, `permutations(length:)` |                                    | 
+| `accumulate`                    |                                                             | `accumulate(_:)`                          |                                    | 
+| `chain`                         | `chain(_:)`                                                 |                                           |                                    | 
+| `chain.from_iterable`           | `chain(_:)`                                                 |                                           |                                    | 
+| `combinations`                  |                                                             | `combinations(length:)`                   |                                    | 
+| `combinations_with_replacement` |                                                             | `combinationsWithReplacement(length:)`    |                                    | 
+| `compress`                      | `compress(data:selectors:)`                                 |                                           |                                    | 
+| `count`                         | `counter()`, `counter(start:step:)`                         |                                           |                                    | 
+| `cycle`                         |                                                             | `cycle()`, `cycle(times:)`                |                                    | 
+| `dropwhile`                     |                                                             | `drop(while:)`                            | Provided by Swift standard library | 
+| `filterfalse`                   |                                                             | `reject(predicate:)`                      | Renamed for clarity                | 
+| `groupby`                       |                                                             | `grouped(by:)`                            |                                    | 
+| `islice`                        |                                                             | `stride(from:to:by:)`                     | Provided by Swift standard library | 
+| `permutations`                  |                                                             | `permutations()`, `permutations(length:)` |                                    | 
 | `product`                       | `product(_:)`, `product(_:repeated:_`, `mixedProduct(_:_:)` |                                           | See distinctions below             | 
-| `repeat`                        | `repeater(value:)`, `repeater(value:times:)`                | -                                         | `repeat` keyword taken in Swift    | 
-| `starmap`                       | -                                                           | -                                         | No appropriate Swift equivalent    | 
-| `takewhile`                     | -                                                           | `prefix(while:)`                          | Provided by Swift standard library | 
-| `tee`                           | -                                                           | `tee(_:)`                                 |                                    | 
-| `zip_longest`                   | `zipLongest(_:_:firstFillValue:secondFillValue:)`           | -                                         |                                    | 
+| `repeat`                        | `repeater(value:)`, `repeater(value:times:)`                |                                           | `repeat` keyword taken in Swift    | 
+| `starmap`                       |                                                             |                                           | No appropriate Swift equivalent    | 
+| `takewhile`                     |                                                             | `prefix(while:)`                          | Provided by Swift standard library | 
+| `tee`                           |                                                             | `tee(_:)`                                 |                                    | 
+| `zip_longest`                   | `zipLongest(_:_:firstFillValue:secondFillValue:)`           |                                           |                                    | 
+
+
+## Infinite Iterator-Sequences
+The iterator-sequences returned by `counter(start:step:)`, `repeater(value:)`, and `cycle()` are infinite. These iterator-sequences adopt LazySequenceProtocol, so operations such as `map` and `filter` are implemented lazily. As a result, they can be used even though the sequences are infinite. In practice, iterating over an infinite iterator-sequence requires a statement such as `break` or `return` to transfer the flow of control out of the otherwise infinite loop.
+
+The iterator-sequences returned by `repeater(value:times:)` and the lazy version of `cycle(times:)`, though finite, are of the same types as those produced by their infinite counterparts.
 
 
 ## Free Functions
@@ -60,7 +65,7 @@ Returns an iterator-sequence that returns values from each sequence until all ar
 let values = chain([1, 2, 3], [4, 5, 6])
 // 1, 2, 3, 4, 5, 6
 
-let values = chain([[1, 2, 3], [4, 5, 6])
+let values = chain([[1, 2, 3], [4, 5, 6]])
 // 1, 2, 3, 4, 5, 6
 ```
  
@@ -86,8 +91,6 @@ let values = counter(start: 1, step: 2)
 // 1, 3, 5, 7, 9, ...
 ```
 
-The returned iterator-sequence adopts `LazySequenceProtocol`, so operations such as `map` and `filter` are implemented lazily. As a result, they can be used even though the sequence is infinite. In practice, iterating over the returned iterator-sequence requires a statement such as `break` or `return` to transfer the flow of control out of the otherwise infinite loop.
-
 ### product(\_:), product(\_:repeated:), mixedProduct(\_:\_:)
 The `product` functions return iterator-sequences for the Cartesian product of sequences. For sequences containing elements of the same type, `product` works as its Python counterpart in that the product can be generated from any number of sequences. To avoid compile-time ambiguity, the function for taking the product of sequences of different types has been renamed `mixedProduct`. Due to Swift's strong, static typing system, `mixedProduct` can take only a finite number of arguments. In the future, `mixedProduct` may be overloaded to take more than two arguments, but each of these implementations must be done individually.
 
@@ -95,7 +98,7 @@ The `product` functions return iterator-sequences for the Cartesian product of s
 
 ```swift
 let values = product([1, 2, 3], [4, 5, 6, 7], [8, 9])
-// [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ...
+// [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ... [3, 7, 9]
 ```
 
 `product(_:repeated:)` Returns an iterator-sequence for the Cartesian product of the sequence repeated with itself a number of times.
@@ -124,16 +127,123 @@ let values = repeater(value: 0, times: 3)
 ```
 
 ### zipLongest(\_:\_:firstFillValue:secondFillValue:)
-Returns an iterator-sequence that aggregates elements from each of the sequences. If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. Iteration continues until the longest sequence is exhausted.
+Returns an iterator-sequence that aggregates elements from each of the sequences. If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. Iteration continues until the longest sequence is exhausted. Due to Swift's strong, static typing system, `zipLongest` can take only a finite number of arguments. In the future, `zipLongest` may be overloaded to take more than two arguments, but each of these implementations must be done individually.
 
 ```swift
-let values = zipLongest([1, 2], [3, 4, 5], firstFillValue: 0, secondFillValue: -1
-// (1, 3), (2, 4), (0, 5)
+let values = zipLongest([1, 2], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z"
+// (1, "a"), (2, "b"), (0, "c")
 
-let values = zipLongest([1, 2, 3, 4], [5, 6], firstFillValue: 0, secondFillValue: -1)
-// (1, 5), (2, 6), (3, -1), (4, -1)
+let values = zipLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
+// (1, "a"), (2, "b"), (3, "z"), (4, "z")
 ```
 
 ## Methods
+### accumulate(_:)
+Returns an array (eager) or an iterator-sequence (lazy) of consecutively accumulated values from the sequence using the specified function.
 
-Details to come.
+```swift
+let values = [1, 2, 3, 4].accumulate(+)
+// [1, 3, 6, 10]
+
+let values = [1, 2, 3, 4].lazy.accumulate(+)
+// 1, 3, 6, 10
+```
+
+### combinations(length:)
+Returns an array (eager) or an iterator-sequence (lazy) of the combinations of the specified length of elements in the sequence.
+
+```swift
+let values = [1, 2, 3, 4].combinations(length: 2)
+// [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+
+let values = [1, 2, 3, 4].lazy.combinations(length: 2)
+// [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]
+```
+
+### combinationsWithReplacement(length:)
+Returns an array (eager) or an iterator-sequence (lazy) of the combinations of the specified length of elements in the sequence, with replacement (i.e. elements can repeat).
+
+```swift
+let values = [1, 2, 3, 4].combinationsWithReplacement(length: 2)
+// [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
+
+let values = [1, 2, 3].lazy.combinationsWithReplacement(length: 2)
+// [1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]
+```
+
+### cycle(), cycle(times:)
+`cycle()` Returns an iterator-sequence cycling infinitely through the sequence. This function always computes lazily.
+
+```swift
+let values = [1, 2, 3].cycle()
+// 1, 2, 3, 1, 2, 3, 1, ...
+```
+
+`cycle(times:)` Returns an array (eager) or an iterator-sequence (lazy) of `times` cycles of self.
+
+```swift
+[1, 2, 3].cycle(times: 2)
+// [1, 2, 3, 1, 2, 3]
+
+[1, 2, 3].lazy.cycle(times: 2)
+// 1, 2, 3, 1, 2, 3
+```
+
+### grouped(by:)
+Returns an array (eager) or an iterator-sequence (lazy) of consecutive keys and groups from the sequence as tuples.
+Groups are made based on the element's output from the given key function. 
+A group is cut as soon as the sequence's next value produces a different key.
+Generally, the sequence should be sorted on the same key function to group all values with the same key.
+
+```swift
+let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+// [(key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])]
+
+let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+// (key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])
+```
+
+### permutations(length:)
+Returns an array (eager) or an iterator-sequence (lazy) containing the permutations of elements in the sequence, optionally of a specified length. If no `length` argument is provided, the permutation length defaults to the length of the sequence.
+
+```swift
+let values = [1, 2, 3].permutations()
+// [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+     
+let values = [1, 2, 3].permutations(length: 2)
+// [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
+
+let values = [1, 2, 3].lazy.permutations()
+// [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
+     
+let values = [1, 2, 3].lazy.permutations(length: 2)
+// [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]
+```
+
+### reject(predicate:)
+Returns an array (eager) or an iterator-sequence (lazy) containing only the elements from the sequence for which the predicate is false.
+
+```swift
+let values = [1, 2, 3, 4, 5].reject { $0 % 2 == 0 }
+// [1, 3, 5]
+
+let values = [1, 2, 3, 4, 5].lazy.reject { $0 % 2 == 0 }
+// 1, 3, 5
+```
+
+### tee(_:)
+Returns an array (eager) or an iterator-sequence (lazy) of the specified number of independent iterators from the sequence. If no argument is provided, the function defaults to producing two independent iterators.
+
+```swift
+let iterators = [1, 2, 3].tee()
+// an array of two independent iterators of [1, 2, 3]
+
+let iterators = [1, 2, 3].tee(3)
+// an array of three independent iterators of [1, 2, 3]
+
+let iterators = [1, 2, 3].lazy.tee()
+// an iterator-sequence of two independent iterators of [1, 2, 3]
+
+let iterators = [1, 2, 3].lazy.tee(3)
+// an iterator-sequence of three independent iterators of [1, 2, 3]
+```
