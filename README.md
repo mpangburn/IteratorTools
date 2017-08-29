@@ -16,7 +16,7 @@ let values = [1, 2, 3].cycle(times: 2)
 let values = [1, 2, 3].lazy.cycle(times: 2)
 // 1, 2, 3, 1, 2, 3
 ```
-Functions such as `product`, however, are better semantically suited as free functions. The free functions in IteratorTools always compute lazily, though they can be casted to an array (or other sequence) to access all values.
+Functions such as `product`, however, are better semantically suited as free functions. The free functions in IteratorTools always compute lazily, though they can be casted to an array (or other sequence) to access all values eagerly.
 
 ```swift
 let values = product([1, 2, 3], [4, 5, 6])
