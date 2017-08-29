@@ -117,7 +117,7 @@ let values = counter(start: 1, step: 2)
 // 1, 3, 5, 7, 9, ...
 ```
 
-#### `product(\_:)`, `product(\_:repeated:)`, `mixedProduct(\_:\_:)`
+#### `product(_:)`, `product(_:repeated:)`, `mixedProduct(_:_:)`
 The `product` functions return iterator-sequences for the Cartesian product of sequences. For sequences containing elements of the same type, `product` works as its Python counterpart in that the product can be generated from any number of sequences. To avoid compile-time ambiguity, the function for taking the product of sequences of different types has been renamed `mixedProduct`. Due to Swift's strong, static typing system, `mixedProduct` can take only a finite number of arguments. In the future, `mixedProduct` may be overloaded to take more than two arguments, but each of these implementations must be done individually.
 
 `product(_:)` Returns an iterator-sequence for the Cartesian product of the sequences.
@@ -152,7 +152,7 @@ let values = repeater(value: 0, times: 3)
 // 0, 0, 0
 ```
 
-#### `zipLongest(\_:\_:firstFillValue:secondFillValue:)`
+#### `zipLongest(_:_:firstFillValue:secondFillValue:)`
 Returns an iterator-sequence that aggregates elements from each of the sequences. If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. Iteration continues until the longest sequence is exhausted. Due to Swift's strong, static typing system, `zipLongest` can take only a finite number of arguments. In the future, `zipLongest` may be overloaded to take more than two arguments, but each of these implementations must be done individually.
 
 ```swift
