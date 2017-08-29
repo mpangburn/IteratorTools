@@ -12,7 +12,7 @@ A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools
 		- [`counter(start:step:)`](#counterstartstep)
 		- [`product(_:)`, `product(_:repeated:)`, `mixedProduct(_:_:)`](#product_-product_repeated-mixedproduct__)
 		- [`repeater(value:times:)`](#repeatervaluetimes)
-		- [`zipLongest(_:_:firstFillValue:secondFillValue:`](#ziplongest__firstfillvaluesecondfillvalue)
+		- [`zipLongest(_:_:firstFillValue:secondFillValue:)`](#ziplongest__firstfillvaluesecondfillvalue)
 	- [**Methods**](#methods)
 		- [`accumulate(_:)`](#accumulate_)
 		- [`combinations(length:)`](#combinationslength)
