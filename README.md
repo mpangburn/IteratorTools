@@ -6,8 +6,8 @@ A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools
 	- [Free Functions and Methods](#free-functions-and-methods)
 - [**Infinite Iterator-Sequences**](#infinite-iterator-sequences)
 - [**Free Functions**](#free-functions)
-	- [`chain(_:)`](#chain(\_:))
-	- [`compress(data:selectors:)`](#`compress(data:selectors:)`)
+	- [`chain(_:)`](#chain_)
+	- [`compress(data:selectors:)`](#compressdataselectors)
 	- [`counter(start:step:)`](#`counter(start:step:)`)
 	- [`product(_:)`, `product(_:repeated:)`, `mixedProduct(_:_:)`](`product(_:)`, `product(_:repeated:)`, `mixedProduct(_:_:)`)
 
