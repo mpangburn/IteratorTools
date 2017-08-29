@@ -14,8 +14,11 @@ import Foundation
  If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. 
  Iteration continues until the longest sequence is exhausted.
  ```
- let values = zipLongest([1, 2, 3, 4], [5, 6], firstFillValue: 0, secondFillValue: -1)
- // (1, 5), (2, 6), (3, -1), (4, -1)
+ let values = zipLongest([1, 2], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z"
+ // (1, "a"), (2, "b"), (0, "c")
+
+ let values = zipLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
+ // (1, "a"), (2, "b"), (3, "z"), (4, "z")
  ```
  - Parameters:
     - firstSequence: The first of the sequences from which to aggregate elements.

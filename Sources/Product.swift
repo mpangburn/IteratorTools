@@ -13,7 +13,7 @@ import Foundation
  Returns an iterator-sequence for the Cartesian product of the sequences.
  ```
  let values = product([1, 2, 3], [4, 5, 6, 7], [8, 9])
- // [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ...
+ // [1, 4, 8], [1, 4, 9], [1, 5, 8], [1, 5, 9], [1, 6, 8], ... [3, 7, 9]
  ```
  - Parameter sequences: The sequences from which to compute the product.
  - Returns: An iterator-sequence for the Cartesian product of the sequences.
@@ -43,7 +43,7 @@ public func product<S: Sequence>(_ sequence: S, repeated: Int) -> CartesianProdu
 /**
  Returns an iterator-sequence for the Cartesian product of two sequences containing elements of different types.
  ```
- let values = product(["a", "b"], [1, 2, 3])
+ let values = mixedProduct(["a", "b"], [1, 2, 3])
  // ("a", 1), ("a", 2), ("a", 3), ("b", 1), ("b", 2), ("b", 3)
  ```
  - Parameters:

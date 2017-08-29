@@ -12,7 +12,7 @@ import Foundation
 public extension Sequence {
 
     /**
-     Returns an array of consecutive keys and groups from the sequence.
+     Returns an array of consecutive keys and groups from the sequence as tuples.
      Groups are made based on the element's output from the given key function.
      A group is cut as soon as the sequence's next value produces a different key.
      Generally, the sequence should be sorted on the same key function to group all values with the same key.
@@ -31,12 +31,12 @@ public extension Sequence {
 public extension LazySequenceProtocol {
 
     /**
-     Returns an iterator-sequence that returns consecutive keys and groups from the sequence.
+     Returns an iterator-sequence that returns consecutive keys and groups from the sequence as tuples.
      Groups are made based on the element's output from the given key function.
      A group is cut as soon as the sequence's next value produces a different key.
      Generally, the sequence should be sorted on the same key function to group all values with the same key.
      ```
-     let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+     let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).lazy.grouped(by: { $0 % 3 })
      // (key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])
      ```
      - Parameter key: The key function used in determining groups.
@@ -48,7 +48,7 @@ public extension LazySequenceProtocol {
 }
 
 
-/// An iterator-sequence that returns consecutive keys and groups from a sequence. 
+/// An iterator-sequence that returns consecutive keys and groups from a sequence as tuples. 
 /// See the `grouped(by:)` Sequence method.
 public struct Grouper<S: Sequence, Key: Equatable>: IteratorProtocol, Sequence {
 

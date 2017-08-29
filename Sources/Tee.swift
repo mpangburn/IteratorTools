@@ -12,11 +12,38 @@ import Foundation
 public extension Sequence {
 
     /**
-     Returns `n` independent iterators from the sequence.
+     Returns an array of `n` independent iterators from the sequence.
      - Parameter n: The number of iterators to produce.
-     - Returns: `n` independent iterators from the sequence.
+     - Returns: An array of `n` independent iterators from the sequence.
      */
-    func tee(_ n: Int) -> [Iterator] {
+    func tee(_ n: Int = 2) -> [Iterator] {
         return Array(repeating: makeIterator(), count: n)
+    }
+}
+
+
+public extension LazySequenceProtocol {
+
+    /**
+     Returns an iterator-sequence of `n` independent iterators from the sequence.
+     - Parameter n: The number of iterators to produce.
+     - Returns: An iterator-sequence of `n` indepdent iterators from the sequence
+     */
+    func tee(_ n: Int = 2) -> Tee<Self> {
+        return Tee(sequence: self, times: n)
+    }
+}
+
+
+/// An iterator-sequence of a specified number of independent iterators from the sequence.
+/// See the `tee(_:)` Sequence and LazySequenceProtocol method.
+public struct Tee<S: Sequence>: IteratorProtocol, Sequence {
+
+    let sequence: S
+    var times: Int
+
+    public mutating func next() -> S.Iterator? {
+        defer { times -= 1 }
+        return times == 0 ? nil : sequence.makeIterator()
     }
 }
