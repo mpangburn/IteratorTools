@@ -84,7 +84,7 @@ The iterator-sequences returned by `repeater(value:times:)` and the lazy version
 
 ## Documentation
 ### Free Functions
-##### `chain(_:)`
+#### `chain(_:)`
 Returns an iterator-sequence that returns values from each sequence until all are exhausted. This function is used for treating consecutive sequences as a single sequence. `chain(_:)` is overloaded to accept either any number of sequences or an array of sequences as parameters.
 
 ```swift
@@ -275,16 +275,16 @@ let iterators = [1, 2, 3].lazy.tee(3)
 ```
 
 ## Installation
-#### CocoaPods
+### CocoaPods
 To install via [CocoaPods](http://cocoapods.org), add the following line to your Podfile:
 
 `pod "IteratorTools"`
 
 
-#### Carthage
+### Carthage
 To install via [Carthage](https://github.com/Carthage/Carthage), add the following line to your Cartfile:
 
 `github "mpangburn/IteratorTools"`
 
-#### Manual
+### Manual
 To install manually, drag and drop the Sources folder into your project.
