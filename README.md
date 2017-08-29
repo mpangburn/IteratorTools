@@ -59,7 +59,7 @@ The iterator-sequences returned by `repeater(value:times:)` and the lazy version
 
 ## Free Functions
 ### chain(_:)
-Returns an iterator-sequence that returns values from each sequence until all are exhausted. Used for treating consecutive sequences as a single sequence. This function is overloaded to accept either any number of sequences or an array of sequences as parameters.
+Returns an iterator-sequence that returns values from each sequence until all are exhausted. This function is used for treating consecutive sequences as a single sequence. `chain(_:)` is overloaded to accept either any number of sequences or an array of sequences as parameters.
 
 ```swift
 let values = chain([1, 2, 3], [4, 5, 6])
@@ -70,7 +70,7 @@ let values = chain([[1, 2, 3], [4, 5, 6]])
 ```
  
 ### compress(data:selectors:)
-Returns an iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`. Stops when either `data` or `selectors` has been exhausted.
+Returns an iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`. Iteration stops when either `data` or `selectors` has been exhausted.
 
 ```swift
 let values = compress([1, 2, 3, 4], [true, true, false, true])
@@ -81,7 +81,7 @@ let values = compress([1, 2, 3], [true, false, true, true, true])
 ```
 
 ### counter(start:step:)
-Returns an infinite iterator-sequence beginning at `start` and incrementing by `step`. By default, creates a counter beginning at zero and incrementing by one.
+Returns an infinite iterator-sequence beginning at `start` and incrementing by `step`. By default, this function creates a counter beginning at zero and incrementing by one.
 
 ```swift
 let values = counter()
@@ -116,7 +116,7 @@ let values = mixedProduct(["a", "b"], [1, 2, 3])
 ```
 
 ### repeater(value:times:)
-Returns an iterator-sequence repeating a value, either infinitely or a specified number of times. Defaults to infinite repetition without an argument for `times`.
+Returns an iterator-sequence repeating a value, either infinitely or a specified number of times. This function defaults to infinite repetition without an argument for `times`.
 
 ```swift
 let values = repeater(value: 0)
