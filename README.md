@@ -1,6 +1,8 @@
 # IteratorTools
 A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools.html).
 
+>The [framework] standardizes a core set of fast, memory efficient tools that are useful by themselves or in combination. Together, they form an “iterator algebra” making it possible to construct specialized tools succinctly and efficiently in pure [Swift].
+
 ## Table of Contents
 - [**From Python to Swift**](#from-python-to-swift)
 	- [Free Functions and Methods](#free-functions-and-methods)
