@@ -225,7 +225,7 @@ Generally, the sequence should be sorted on the same key function to group all v
 let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
 // [(key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])]
 
-let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).grouped(by: { $0 % 3 })
+let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).lazy.grouped(by: { $0 % 3 })
 // (key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])
 ```
 
