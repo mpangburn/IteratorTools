@@ -210,10 +210,10 @@ let values = [1, 2, 3].cycle()
 `cycle(times:)` Returns an array (eager) or an iterator-sequence (lazy) of `times` cycles of self.
 
 ```swift
-[1, 2, 3].cycle(times: 2)
+let values = [1, 2, 3].cycle(times: 2)
 // [1, 2, 3, 1, 2, 3]
 
-[1, 2, 3].lazy.cycle(times: 2)
+let values = [1, 2, 3].lazy.cycle(times: 2)
 // 1, 2, 3, 1, 2, 3
 ```
 
