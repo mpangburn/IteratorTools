@@ -71,7 +71,7 @@ The table below lists the functions provided by Python's itertools and their Swi
 | `groupby`                       |                                                             | `grouped(by:)`                            |                                    | 
 | `islice`                        |                                                             | `stride(from:to:by:)`                     | Provided by Swift standard library | 
 | `permutations`                  |                                                             | `permutations()`, `permutations(length:)` |                                    | 
-| `product`                       | `product(_:)`, `product(_:repeated:_`, `mixedProduct(_:_:)` |                                           | See distinctions below             | 
+| `product`                       | `product(_:)`, `product(_:repeated:_)`, `mixedProduct(_:_:)` |                                           | See distinctions below             | 
 | `repeat`                        | `repeater(value:)`, `repeater(value:times:)`                |                                           | `repeat` keyword taken in Swift    | 
 | `starmap`                       |                                                             |                                           | No appropriate Swift equivalent    | 
 | `takewhile`                     |                                                             | `prefix(while:)`                          | Provided by Swift standard library | 
