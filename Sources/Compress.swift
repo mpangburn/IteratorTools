@@ -13,7 +13,7 @@ import Foundation
  Returns an iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`.
  Stops when either `data` or `selectors` has been exhausted.
  ```
- let values = compress([1, 2, 3, 4], [true, true, false, true])
+ let values = compress(data: [1, 2, 3, 4], selectors: [true, true, false, true])
  // 1, 2, 4
  ```
  - Parameters:

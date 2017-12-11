@@ -26,7 +26,7 @@ class AccumulateTests: XCTestCase {
 
     func testAccumulateCustom() {
         let values = ["Hello", "q ", "zWorld", ".!"].accumulate {
-            $0 + String($1.characters.dropFirst())
+            $0 + String($1.dropFirst())
         }
         XCTAssert(values == ["Hello", "Hello ", "Hello World", "Hello World!"])
     }
@@ -51,7 +51,7 @@ class AccumulateTests: XCTestCase {
 
     func testLazyAccumulateCustom() {
         var accumulator = ["Hello", "q ", "zWorld", ".!"].lazy.accumulate {
-            $0 + String($1.characters.dropFirst())
+            $0 + String($1.dropFirst())
         }
         XCTAssert(accumulator.next() == "Hello")
         XCTAssert(accumulator.next() == "Hello ")

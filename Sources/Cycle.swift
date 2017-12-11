@@ -26,7 +26,7 @@ public extension Sequence {
     /**
      Returns an array of `times` cycles of self.
      ```
-     [1, 2, 3].cycle(times: 2)
+     let values = [1, 2, 3].cycle(times: 2)
      // [1, 2, 3, 1, 2, 3]
      ```
      - Parameter times: The number of times to cycle through the sequence.

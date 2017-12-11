@@ -52,7 +52,7 @@ public func product<S: Sequence>(_ sequence: S, repeated: Int) -> CartesianProdu
  - Returns: An iterator-sequence for the Cartesian product of two sequences containing elements of different types.
  */
 public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2) -> MixedTypeCartesianProduct<S1, S2> {
-    // If this function is named `product`, "ambiguous reference to `product`" error arises
+    // If this function is named `product`, "ambiguous reference to `product`" error can occur
     return MixedTypeCartesianProduct(firstSequence, secondSequence)
 }
 
@@ -102,7 +102,8 @@ public struct CartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 }
 
 
-/// An iterator-sequence for the Cartesian product of two sequences of different types. See `product(_:_:)`.
+/// An iterator-sequence for the Cartesian product of two sequences of different types. 
+/// See `mixedProduct(_:_:)`.
 public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
     let secondSequence: S2
