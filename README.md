@@ -101,10 +101,10 @@ let values = chain([[1, 2, 3], [4, 5, 6]])
 Returns an iterator-sequence that filters elements from `data`, returning only those that have a corresponding `true` in `selectors`. Iteration stops when either `data` or `selectors` has been exhausted.
 
 ```swift
-let values = compress([1, 2, 3, 4], [true, true, false, true])
+let values = compress(data: [1, 2, 3, 4], selectors: [true, true, false, true])
 // 1, 2, 4
 
-let values = compress([1, 2, 3], [true, false, true, true, true])
+let values = compress(data: [1, 2, 3], selectors: [true, false, true, true, true])
 // 1, 3
 ```
 
