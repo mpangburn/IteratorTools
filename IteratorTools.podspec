@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "IteratorTools"
-  s.version          = "1.0.1"
+  s.version          = "1.1.0"
   s.summary          = "A Swift port of Python's itertools."
 
   s.description      = <<-DESC
