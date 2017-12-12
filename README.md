@@ -27,6 +27,7 @@ A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools
 		- [`permutations(length:repeatingElements:)`](#permutationslengthrepeatingelements)
 		- [`reject(predicate:)`](#rejectpredicate)
 		- [`tee(_:)`](#tee_)
+- [**License**](#license)
 
 
 ## From Python to Swift
@@ -166,7 +167,7 @@ let values = repeater(value: 0, times: 3)
 ```
 
 #### `zipToLongest(_:_:firstFillValue:secondFillValue:)`
-Returns an iterator-sequence that aggregates elements from each of the sequences. If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. Iteration continues until the longest sequence is exhausted. Due to Swift's strong, static typing system, `zipLongest` can take only a finite number of arguments. In the future, `zipLongest` may be overloaded to take more than two arguments, but each of these implementations must be done individually.
+Returns an iterator-sequence that aggregates elements from each of the sequences. If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. Iteration continues until the longest sequence is exhausted. Because of limitations with Swift's generics, `zipToLongest` can take only a finite number of arguments. In the future, `zipToLongest` may be overloaded to take more than two arguments, but each of these implementations must be done individually at this point in time.
 
 ```swift
 let values = zipToLongest([1, 2], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z"
@@ -242,17 +243,17 @@ let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).lazy.grouped(by: { $0 % 3 
 Returns an array (eager) or an iterator-sequence (lazy) containing the permutations of elements in the sequence, optionally of a specified length. If no `length` argument is provided, the permutation length defaults to the length of the sequence.
 
 ```swift
-let values = [1, 2, 3].permutations()
+let values = [1, 2, 3].permutations(repeatingElements: false)
 // [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
-     
-let values = [1, 2, 3].permutations(length: 2)
-// [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
 
-let values = [1, 2, 3].lazy.permutations()
+let values = [1, 2, 3].permutations(length: 2, repeatingElements: true)
+// [[1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]]
+
+let values = [1, 2, 3].lazy.permutations(repeatingElements: false)
 // [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]
-     
-let values = [1, 2, 3].lazy.permutations(length: 2)
-// [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]
+
+let values = [1, 2, 3].lazy.permutations(length: 2, repeatingElements: true)
+// [1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3]
 ```
 
 #### `reject(predicate:)`
@@ -282,3 +283,6 @@ let iterators = [1, 2, 3].lazy.tee()
 let iterators = [1, 2, 3].lazy.tee(3)
 // an iterator-sequence of three independent iterators of [1, 2, 3]
 ```
+
+## License
+IteratorTools is released under the MIT license. See [LICENSE](https://github.com/mpangburn/IteratorTools/blob/master/LICENSE) for details.
