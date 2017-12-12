@@ -1,5 +1,5 @@
 //
-//  ZipLongest.swift
+//  ZipToLongest.swift
 //  IteratorTools
 //
 //  Created by Michael Pangburn on 8/25/17.
@@ -14,10 +14,10 @@ import Foundation
  If the sequences are of uneven length, missing values are filled-in with the corresponding fill value. 
  Iteration continues until the longest sequence is exhausted.
  ```
- let values = zipLongest([1, 2], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z"
+ let values = zipToLongest([1, 2], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z"
  // (1, "a"), (2, "b"), (0, "c")
 
- let values = zipLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
+ let values = zipToLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
  // (1, "a"), (2, "b"), (3, "z"), (4, "z")
  ```
  - Parameters:
@@ -27,14 +27,14 @@ import Foundation
     - secondFillValue: The value to use as a filler in zipping when the first sequence is longer than the second.
  - Returns: An iterator-sequence that aggregates elements from each of the sequences.
  */
-public func zipLongest<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2, firstFillValue: S1.Iterator.Element, secondFillValue: S2.Iterator.Element) -> ZipLongest<S1, S2> {
-        return ZipLongest(firstSequence, secondSequence, firstFillValue: firstFillValue, secondFillValue: secondFillValue)
+public func zipToLongest<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ secondSequence: S2, firstFillValue: S1.Iterator.Element, secondFillValue: S2.Iterator.Element) -> ZipToLongest<S1, S2> {
+        return ZipToLongest(firstSequence, secondSequence, firstFillValue: firstFillValue, secondFillValue: secondFillValue)
 }
 
 
 /// An iterator-sequence that aggregates elements from two sequences, filling in with values when one sequence is longer than the other.
-/// See `zipLongest(_:_:firstFillValue:secondFillValue:)`.
-public struct ZipLongest<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
+/// See `zipToLongest(_:_:firstFillValue:secondFillValue:)`.
+public struct ZipToLongest<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
     private var firstIterator: S1.Iterator
     private var secondIterator: S2.Iterator

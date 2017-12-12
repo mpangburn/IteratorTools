@@ -21,8 +21,8 @@
 		89CEDB691F50D3C0005944DD /* GroupedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB681F50D3C0005944DD /* GroupedTests.swift */; };
 		89CEDB6B1F50E8E3005944DD /* Tee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6A1F50E8E3005944DD /* Tee.swift */; };
 		89CEDB6D1F50E9B5005944DD /* TeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6C1F50E9B5005944DD /* TeeTests.swift */; };
-		89CEDB6F1F50F139005944DD /* ZipLongest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6E1F50F139005944DD /* ZipLongest.swift */; };
-		89CEDB711F50F498005944DD /* ZipLongestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB701F50F498005944DD /* ZipLongestTests.swift */; };
+		89CEDB6F1F50F139005944DD /* ZipToLongest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB6E1F50F139005944DD /* ZipToLongest.swift */; };
+		89CEDB711F50F498005944DD /* ZipToLongest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB701F50F498005944DD /* ZipToLongest.swift */; };
 		89CEDB731F51EE1B005944DD /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB721F51EE1B005944DD /* Product.swift */; };
 		89CEDB751F51F26D005944DD /* ProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB741F51F26D005944DD /* ProductTests.swift */; };
 		89CEDB771F5354C1005944DD /* Permutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB761F5354C1005944DD /* Permutations.swift */; };
@@ -60,8 +60,8 @@
 		89CEDB681F50D3C0005944DD /* GroupedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedTests.swift; sourceTree = "<group>"; };
 		89CEDB6A1F50E8E3005944DD /* Tee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tee.swift; path = Sources/Tee.swift; sourceTree = "<group>"; };
 		89CEDB6C1F50E9B5005944DD /* TeeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeeTests.swift; sourceTree = "<group>"; };
-		89CEDB6E1F50F139005944DD /* ZipLongest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZipLongest.swift; path = Sources/ZipLongest.swift; sourceTree = "<group>"; };
-		89CEDB701F50F498005944DD /* ZipLongestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipLongestTests.swift; sourceTree = "<group>"; };
+		89CEDB6E1F50F139005944DD /* ZipToLongest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZipToLongest.swift; path = Sources/ZipToLongest.swift; sourceTree = "<group>"; };
+		89CEDB701F50F498005944DD /* ZipToLongest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZipToLongest.swift; sourceTree = "<group>"; };
 		89CEDB721F51EE1B005944DD /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Product.swift; path = Sources/Product.swift; sourceTree = "<group>"; };
 		89CEDB741F51F26D005944DD /* ProductTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTests.swift; sourceTree = "<group>"; };
 		89CEDB761F5354C1005944DD /* Permutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Permutations.swift; path = Sources/Permutations.swift; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 				89CEDB641F509FD7005944DD /* RejectTests.swift */,
 				89E8F1C71F4F8144000FC583 /* RepeaterTests.swift */,
 				89CEDB6C1F50E9B5005944DD /* TeeTests.swift */,
-				89CEDB701F50F498005944DD /* ZipLongestTests.swift */,
+				89CEDB701F50F498005944DD /* ZipToLongest.swift */,
 				89E8F1AE1F4F2CC9000FC583 /* Info.plist */,
 			);
 			path = IteratorToolsTests;
@@ -167,7 +167,7 @@
 				89CEDB621F509B27005944DD /* Reject.swift */,
 				89E8F1C51F4F733C000FC583 /* Repeater.swift */,
 				89CEDB6A1F50E8E3005944DD /* Tee.swift */,
-				89CEDB6E1F50F139005944DD /* ZipLongest.swift */,
+				89CEDB6E1F50F139005944DD /* ZipToLongest.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 			files = (
 				89CEDB6B1F50E8E3005944DD /* Tee.swift in Sources */,
 				89CEDB731F51EE1B005944DD /* Product.swift in Sources */,
-				89CEDB6F1F50F139005944DD /* ZipLongest.swift in Sources */,
+				89CEDB6F1F50F139005944DD /* ZipToLongest.swift in Sources */,
 				89B4109A1FDF68A7001D86E5 /* AnyIterator.swift in Sources */,
 				89E8F1C21F4F56E2000FC583 /* Counter.swift in Sources */,
 				89CEDB631F509B27005944DD /* Reject.swift in Sources */,
@@ -313,7 +313,7 @@
 				89CEDB691F50D3C0005944DD /* GroupedTests.swift in Sources */,
 				89E8F1CC1F4F8F7A000FC583 /* AccumulateTests.swift in Sources */,
 				89CEDB791F536CE9005944DD /* PermutationsTests.swift in Sources */,
-				89CEDB711F50F498005944DD /* ZipLongestTests.swift in Sources */,
+				89CEDB711F50F498005944DD /* ZipToLongest.swift in Sources */,
 				89CEDB611F509651005944DD /* CompressTests.swift in Sources */,
 				89E8F1C81F4F8144000FC583 /* RepeaterTests.swift in Sources */,
 				89CEDB751F51F26D005944DD /* ProductTests.swift in Sources */,

@@ -21,13 +21,25 @@ A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools
 		- [`combinationsWithReplacement(length:)`](#combinationswithreplacementlength)
 		- [`cycle()`, `cycle(times:)`](#cycle-cycletimes)
 		- [`grouped(by:)`](#groupedby)
-		- [`permutations(length:)`](#permutationslength)
+		- [`permutations(length:repeatingElements:)`](#permutationslengthrepeatingelements)
 		- [`reject(predicate:)`](#rejectpredicate)
 		- [`tee(_:)`](#tee_)
 - [**Installation**](#installation)
 	- [CocoaPods](#cocoapods)
 	- [Carthage](#carthage)
 	- [Manual](#manual)
+
+## Installation
+### CocoaPods
+To install via [CocoaPods](http://cocoapods.org), add the following line to your Podfile:
+
+`pod "IteratorTools"`
+
+
+### Carthage
+To install via [Carthage](https://github.com/Carthage/Carthage), add the following line to your Cartfile:
+
+`github "mpangburn/IteratorTools"`
 
 ## From Python to Swift
 Python's `iterator` and `iterable` protocols are equivalent to Swift's [`IteratorProtocol`](https://developer.apple.com/documentation/swift/iteratorprotocol) and [`Sequence`](https://developer.apple.com/documentation/swift/sequence). In Python, every `iterator` must also be an `iterable`. Though Swift has no such constraint, the return types of IteratorTools functions implement both `IteratorProtocol` and `Sequence` (or, in [special cases](#infinite-iterator-sequences), `LazySequenceProtocol`) to follow Python's pattern and to reduce boilerplate code. These types will henceforth be referred to as iterator-sequences.
@@ -231,7 +243,7 @@ let values = (0...10).sorted(by: { $0 % 3 < $1 % 3 }).lazy.grouped(by: { $0 % 3 
 // (key: 0, elements: [0, 3, 6, 9]), (key: 1, elements: [1, 4, 7, 10]), (key: 2, elements: [2, 5, 8])
 ```
 
-#### `permutations(length:)`
+#### `permutations(length:repeatingElements:)`
 Returns an array (eager) or an iterator-sequence (lazy) containing the permutations of elements in the sequence, optionally of a specified length. If no `length` argument is provided, the permutation length defaults to the length of the sequence.
 
 ```swift
@@ -275,18 +287,3 @@ let iterators = [1, 2, 3].lazy.tee()
 let iterators = [1, 2, 3].lazy.tee(3)
 // an iterator-sequence of three independent iterators of [1, 2, 3]
 ```
-
-## Installation
-### CocoaPods
-To install via [CocoaPods](http://cocoapods.org), add the following line to your Podfile:
-
-`pod "IteratorTools"`
-
-
-### Carthage
-To install via [Carthage](https://github.com/Carthage/Carthage), add the following line to your Cartfile:
-
-`github "mpangburn/IteratorTools"`
-
-### Manual
-To install manually, drag and drop the Sources folder into your project.

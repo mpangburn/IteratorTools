@@ -1,5 +1,5 @@
 //
-//  ZipLongestTests.swift
+//  ZipToLongestTests.swift
 //  IteratorTools
 //
 //  Created by Michael Pangburn on 8/25/17.
@@ -10,18 +10,18 @@ import XCTest
 @testable import IteratorTools
 
 
-class ZipLongestTests: XCTestCase {
+class ZipToLongestTests: XCTestCase {
 
-    func testZipLongestMatchingLength() {
-        var zipped = zipLongest([1, 2, 3], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z")
+    func testZipToLongestMatchingLength() {
+        var zipped = zipToLongest([1, 2, 3], ["a", "b", "c"], firstFillValue: 0, secondFillValue: "z")
         XCTAssert(zipped.next()! == (1, "a"))
         XCTAssert(zipped.next()! == (2, "b"))
         XCTAssert(zipped.next()! == (3, "c"))
         XCTAssert(zipped.next() == nil)
     }
 
-    func testZipLongestFirstSequenceLonger() {
-        var zipped = zipLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
+    func testZipToLongestFirstSequenceLonger() {
+        var zipped = zipToLongest([1, 2, 3, 4], ["a", "b"], firstFillValue: 0, secondFillValue: "z")
         XCTAssert(zipped.next()! == (1, "a"))
         XCTAssert(zipped.next()! == (2, "b"))
         XCTAssert(zipped.next()! == (3, "z"))
@@ -29,8 +29,8 @@ class ZipLongestTests: XCTestCase {
         XCTAssert(zipped.next() == nil)
     }
 
-    func testZipLongestSecondSequenceLonger() {
-        var zipped = zipLongest([1, 2], ["a", "b", "c", "d"], firstFillValue: 0, secondFillValue: "z")
+    func testZipToLongestSecondSequenceLonger() {
+        var zipped = zipToLongest([1, 2], ["a", "b", "c", "d"], firstFillValue: 0, secondFillValue: "z")
         XCTAssert(zipped.next()! == (1, "a"))
         XCTAssert(zipped.next()! == (2, "b"))
         XCTAssert(zipped.next()! == (0, "c"))
@@ -38,8 +38,8 @@ class ZipLongestTests: XCTestCase {
         XCTAssert(zipped.next() == nil)
     }
 
-    func testZipLongestEmpty() {
-        var zipped = zipLongest([], [], firstFillValue: 0, secondFillValue: "a")
+    func testZipToLongestEmpty() {
+        var zipped = zipToLongest([], [], firstFillValue: 0, secondFillValue: "a")
         XCTAssert(zipped.next() == nil)
     }
 }
