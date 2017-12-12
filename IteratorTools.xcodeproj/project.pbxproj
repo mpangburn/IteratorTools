@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		897776D11F54784E00D21FD5 /* Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897776D01F54784E00D21FD5 /* Combinations.swift */; };
 		897776D51F547B6800D21FD5 /* CombinationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897776D41F547B6800D21FD5 /* CombinationsTests.swift */; };
+		89B4109A1FDF68A7001D86E5 /* AnyIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B410991FDF68A7001D86E5 /* AnyIterator.swift */; };
+		89B4109B1FDF68B6001D86E5 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1CD1F507771000FC583 /* Chain.swift */; };
+		89B4109C1FDF68BB001D86E5 /* Accumulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C91F4F8988000FC583 /* Accumulate.swift */; };
+		89B4109D1FDF68C6001D86E5 /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C51F4F733C000FC583 /* Repeater.swift */; };
 		89CEDB5F1F50942D005944DD /* Compress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB5E1F50942D005944DD /* Compress.swift */; };
 		89CEDB611F509651005944DD /* CompressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB601F509651005944DD /* CompressTests.swift */; };
 		89CEDB631F509B27005944DD /* Reject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CEDB621F509B27005944DD /* Reject.swift */; };
@@ -29,11 +33,8 @@
 		89E8F1C01F4F41F0000FC583 /* CycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1BF1F4F41F0000FC583 /* CycleTests.swift */; };
 		89E8F1C21F4F56E2000FC583 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C11F4F56E2000FC583 /* Counter.swift */; };
 		89E8F1C41F4F56E9000FC583 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C31F4F56E9000FC583 /* CounterTests.swift */; };
-		89E8F1C61F4F733C000FC583 /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C51F4F733C000FC583 /* Repeater.swift */; };
 		89E8F1C81F4F8144000FC583 /* RepeaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C71F4F8144000FC583 /* RepeaterTests.swift */; };
-		89E8F1CA1F4F8988000FC583 /* Accumulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1C91F4F8988000FC583 /* Accumulate.swift */; };
 		89E8F1CC1F4F8F7A000FC583 /* AccumulateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1CB1F4F8F7A000FC583 /* AccumulateTests.swift */; };
-		89E8F1CE1F507771000FC583 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1CD1F507771000FC583 /* Chain.swift */; };
 		89E8F1D01F5079C2000FC583 /* ChainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8F1CF1F5079C2000FC583 /* ChainTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		897776D01F54784E00D21FD5 /* Combinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Combinations.swift; path = Sources/Combinations.swift; sourceTree = "<group>"; };
 		897776D41F547B6800D21FD5 /* CombinationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinationsTests.swift; sourceTree = "<group>"; };
+		89B410991FDF68A7001D86E5 /* AnyIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyIterator.swift; sourceTree = "<group>"; };
 		89CEDB5E1F50942D005944DD /* Compress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compress.swift; path = Sources/Compress.swift; sourceTree = "<group>"; };
 		89CEDB601F509651005944DD /* CompressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompressTests.swift; sourceTree = "<group>"; };
 		89CEDB621F509B27005944DD /* Reject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reject.swift; path = Sources/Reject.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				89E8F1C91F4F8988000FC583 /* Accumulate.swift */,
+				89B410991FDF68A7001D86E5 /* AnyIterator.swift */,
 				89E8F1CD1F507771000FC583 /* Chain.swift */,
 				897776D01F54784E00D21FD5 /* Combinations.swift */,
 				89CEDB5E1F50942D005944DD /* Compress.swift */,
@@ -286,13 +289,17 @@
 				89CEDB6B1F50E8E3005944DD /* Tee.swift in Sources */,
 				89CEDB731F51EE1B005944DD /* Product.swift in Sources */,
 				89CEDB6F1F50F139005944DD /* ZipLongest.swift in Sources */,
+				89B4109A1FDF68A7001D86E5 /* AnyIterator.swift in Sources */,
 				89E8F1C21F4F56E2000FC583 /* Counter.swift in Sources */,
 				89CEDB631F509B27005944DD /* Reject.swift in Sources */,
 				89CEDB771F5354C1005944DD /* Permutations.swift in Sources */,
 				89E8F1BE1F4F3C10000FC583 /* Cycle.swift in Sources */,
 				89CEDB671F50C23D005944DD /* Grouped.swift in Sources */,
+				89B4109B1FDF68B6001D86E5 /* Chain.swift in Sources */,
+				89B4109C1FDF68BB001D86E5 /* Accumulate.swift in Sources */,
 				89CEDB5F1F50942D005944DD /* Compress.swift in Sources */,
 				897776D11F54784E00D21FD5 /* Combinations.swift in Sources */,
+				89B4109D1FDF68C6001D86E5 /* Repeater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,16 +312,13 @@
 				89CEDB6D1F50E9B5005944DD /* TeeTests.swift in Sources */,
 				89CEDB691F50D3C0005944DD /* GroupedTests.swift in Sources */,
 				89E8F1CC1F4F8F7A000FC583 /* AccumulateTests.swift in Sources */,
-				89E8F1CE1F507771000FC583 /* Chain.swift in Sources */,
 				89CEDB791F536CE9005944DD /* PermutationsTests.swift in Sources */,
 				89CEDB711F50F498005944DD /* ZipLongestTests.swift in Sources */,
 				89CEDB611F509651005944DD /* CompressTests.swift in Sources */,
 				89E8F1C81F4F8144000FC583 /* RepeaterTests.swift in Sources */,
 				89CEDB751F51F26D005944DD /* ProductTests.swift in Sources */,
 				897776D51F547B6800D21FD5 /* CombinationsTests.swift in Sources */,
-				89E8F1C61F4F733C000FC583 /* Repeater.swift in Sources */,
 				89E8F1C01F4F41F0000FC583 /* CycleTests.swift in Sources */,
-				89E8F1CA1F4F8988000FC583 /* Accumulate.swift in Sources */,
 				89CEDB651F509FD7005944DD /* RejectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

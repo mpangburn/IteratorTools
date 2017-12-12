@@ -10,9 +10,9 @@ import XCTest
 @testable import IteratorTools
 
 
-// MARK: Permutations without Repetition tests
+// MARK: - Permutations without repetition tests
 
-class PermutationsTests: XCTestCase {
+class PermutationsWithoutRepetitionTests: XCTestCase {
 
     // MARK: - Eager computation
 
@@ -141,7 +141,7 @@ class PermutationsTests: XCTestCase {
 }
 
 
-// MARK: Permutations with repetition tests
+// MARK: - Permutations with repetition tests
 
 class PermutationsWithRepetitionTests: XCTestCase {
 

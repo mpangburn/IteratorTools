@@ -14,27 +14,19 @@ public extension Sequence {
     /**
      Returns an array containing the combinations of the specified length of elements in the sequence.
      ```
-     let values = [1, 2, 3, 4].combinations(length: 2)
+     let values = [1, 2, 3, 4].combinations(length: 2, repeatingElements: false)
      // [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+
+     let values = [1, 2, 3, 4].combinations(length: 2, repeatingElements: true)
+     // [[1, 1], [1, 2], [1, 3], [1, 4], [2, 2], [2, 3], [2, 4], [3, 3], [3, 4]]
      ```
-     - Parameter length: The length of the combinations to return.
+     - Parameters:
+        - length: The length of the combinations to return.
+        - repeatingElements: A boolean value determining whether or not elements can repeat in a combination.
      - Returns: An array containing the combinations of the specified length of elements in the sequence.
      */
-    func combinations(length: Int) -> [[Iterator.Element]] {
-        return Array(Combinations(sequence: self, length: length))
-    }
-
-    /**
-     Returns an array containing the combinations of the specified length of elements in the sequence, with replacement (i.e. elements can repeat).
-     ```
-     let values = [1, 2, 3, 4].combinationsWithReplacement(length: 2)
-     // [[1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
-     ```
-     - Parameter length: The length of the combinations to return.
-     - Returns: An array containing the combinations of the specified length of elements in the sequence, with replacement (i.e. elements can repeat).
-     */
-    func combinationsWithReplacement(length: Int) -> [[Iterator.Element]] {
-        return Array(CombinationsWithReplacement(sequence: self, length: length))
+    func combinations(length: Int, repeatingElements: Bool) -> [[Iterator.Element]] {
+        return Array(Combinations(sequence: self, length: length, repeatingElements: repeatingElements))
     }
 }
 
@@ -42,45 +34,43 @@ public extension Sequence {
 public extension LazySequenceProtocol {
 
     /**
-     Returns an array containing the combinations of the specified length of elements in the sequence.
+     Returns an iterator-sequence that returns the combinations of the specified length of elements in the sequence.
      ```
-     let values = [1, 2, 3, 4].lazy.combinations(length: 2)
+     let values = [1, 2, 3, 4].lazy.combinations(length: 2, repeatingElements: false)
      // [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]
-     ```
-     - Parameter length: The length of the combinations to return.
-     - Returns: An iterator-sequence containing the combinations of elements in the sequence of the specified length.
-     */
-    func combinations(length: Int) -> Combinations<Self> {
-        return Combinations(sequence: self, length: length)
-    }
 
-    /**
-     Returns an array containing the combinations of the specified length of elements in the sequence, with replacement (i.e. elements can repeat).
+     let values = [1, 2, 3, 4].lazy.combinations(length: 2, repeatingElements: true)
+     // [1, 1], [1, 2], [1, 3], [1, 4], [2, 2], [2, 3], [2, 4], [3, 3], [3, 4]
      ```
-     let values = [1, 2, 3].lazy.combinationsWithReplacement(length: 2)
-     // [1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]
-     ```
-     - Parameter length: The length of the combinations to return.
-     - Returns: An array containing the combinations of the specified length of elements in the sequence, with replacement (i.e. elements can repeat).
+     - Parameters:
+        - length: The length of the combinations to return.
+        - repeatingElements: A boolean value determining whether or not elements can repeat in a combination.
+     - Returns: An an iterator-sequence that returns the combinations of the specified length of elements in the sequence.
      */
-    func combinationsWithReplacement(length: Int) -> CombinationsWithReplacement<Self> {
-        return CombinationsWithReplacement(sequence: self, length: length)
+    func combinations(length: Int, repeatingElements: Bool) -> Combinations<Self> {
+        return Combinations(sequence: self, length: length, repeatingElements: repeatingElements)
     }
 }
 
 
 /// An iterator-sequence that returns the combinations of a specified length of elements in a sequence.
-/// See the `combinations(length:)` Sequence and LazySequenceProtocol method.
+/// See the `combinations(length:repeatingElements:)` Sequence and LazySequenceProtocol method.
 public struct Combinations<S: Sequence>: IteratorProtocol, Sequence {
 
     let values: [S.Iterator.Element]
     let combinationLength: Int
-    var indicesIterator: Permutations<LazyRandomAccessCollection<CountableRange<Int>>>
-    
-    init(sequence: S, length: Int) {
+    let repeatingElements: Bool
+    var indicesIterator: AnyIterator<Array<Int>>
+
+    init(sequence: S, length: Int, repeatingElements: Bool) {
         self.values = Array(sequence)
         self.combinationLength = length
-        self.indicesIterator = values.indices.lazy.permutations(length: combinationLength, repeatingElements: false)
+        self.repeatingElements = repeatingElements
+        if repeatingElements {
+            self.indicesIterator = AnyIterator(product(values.indices, repeated: length))
+        } else {
+            self.indicesIterator = AnyIterator(Permutations(sequence: values.indices, length: length, repeatingElements: false))
+        }
     }
 
     public mutating func next() -> [S.Iterator.Element]? {
@@ -88,36 +78,7 @@ public struct Combinations<S: Sequence>: IteratorProtocol, Sequence {
             return nil
         }
 
-        guard indices.sorted() == Array(indices) else {
-            return next()
-        }
-
-        let combination = indices.map { values[$0] }
-        return combination.isEmpty ? nil : combination
-    }
-}
-
-
-/// An iterator-sequence that returns the combinations of elements in a sequence, with replacement (i.e. elements can repeat).
-/// See the `combinationsWithReplacement(length:)` Sequence and LazySequenceProtocol method.
-public struct CombinationsWithReplacement<S: Sequence>: IteratorProtocol, Sequence {
-
-    let values: [S.Iterator.Element]
-    let combinationLength: Int
-    var indicesIterator: CartesianProduct<CountableRange<Int>>
-
-    init(sequence: S, length: Int) {
-        self.values = Array(sequence)
-        self.combinationLength = length
-        self.indicesIterator = product(values.indices, repeated: length)
-    }
-
-    public mutating func next() -> [S.Iterator.Element]? {
-        guard let indices = indicesIterator.next() else {
-            return nil
-        }
-
-        guard indices.sorted() == Array(indices) else {
+        guard indices.sorted() == indices else {
             return next()
         }
 

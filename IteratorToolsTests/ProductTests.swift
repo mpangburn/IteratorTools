@@ -15,9 +15,7 @@ class ProductTests: XCTestCase {
     // MARK: - SingleTypeCartesianProductIterator tests
 
     func testSingleTypeProductEqualLength() {
-        var values = product(
-
-            [1, 2, 3], [4, 5, 6], [7, 8, 9])
+        var values = product([1, 2, 3], [4, 5, 6], [7, 8, 9])
         for firstValue in 1...3 {
             for secondValue in 4...6 {
                 for thirdValue in 7...9 {
