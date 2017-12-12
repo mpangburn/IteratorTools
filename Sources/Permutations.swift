@@ -20,12 +20,22 @@ public extension Sequence {
      let values = [1, 2, 3].permutations(length: 2)
      // [[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]
      ```
-     - Parameter length: The length of the permutations to return. Defaults to the length of the sequence.
+     - Parameters:
+        - length: The length of the permutations to return. Defaults to the length of the sequence.
+        - repeatingElements: A boolean value determining whether or not elements can repeat in a permutation.
      - Returns: An array containing the permutations of elements in the sequence.
      */
-    func permutations(length: Int? = nil) -> [[Iterator.Element]] {
-        return Array(Permutations(sequence: self, length: length))
+    func permutations(length: Int, repeatingElements: Bool) -> [[Iterator.Element]] {
+        return Array(Permutations(sequence: self, length: length, repeatingElements: repeatingElements))
     }
+
+    func permutations(repeatingElements: Bool) -> [[Iterator.Element]] {
+        return Array(Permutations(sequence: self, length: nil, repeatingElements: repeatingElements))
+    }
+
+//    func permutationsWithReplacement(length: Int? = nil) -> [[Iterator.Element]] {
+//        return Array(PermutationsWithReplacement(sequence: self, length: length))
+//    }
 }
 
 
@@ -43,9 +53,17 @@ public extension LazySequenceProtocol {
      - Parameter length: The length of the permutations to return. Defaults to the length of the sequence.
      - Returns: An iterator-sequence that returns the permutations of elements in the sequence.
      */
-    func permutations(length: Int? = nil) -> Permutations<Self> {
-        return Permutations(sequence: self, length: length)
+    func permutations(length: Int, repeatingElements: Bool) -> Permutations<Self> {
+        return Permutations(sequence: self, length: length, repeatingElements: repeatingElements)
     }
+
+    func permutations(repeatingElements: Bool) -> Permutations<Self> {
+        return Permutations(sequence: self, length: nil, repeatingElements: repeatingElements)
+    }
+
+//    func permutationsWithReplacement(length: Int? = nil) -> PermutationsWithReplacement<Self> {
+//        return PermutationsWithReplacement(sequence: self, length: length)
+//    }
 }
 
 
@@ -55,18 +73,19 @@ public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
 
     let values: [S.Iterator.Element]
     let permutationLength: Int
+    let repeatingElements: Bool
     var indicesIterator: CartesianProduct<CountableRange<Int>>
 
-    init(sequence: S, length: Int?) {
+    init(sequence: S, length: Int?, repeatingElements: Bool) {
         self.values = Array(sequence)
 
-        // Use of ternary operator produces compile-time error
         if let length = length {
             self.permutationLength = length
         } else {
             self.permutationLength = values.count
         }
 
+        self.repeatingElements = repeatingElements
         self.indicesIterator = product(values.indices, repeated: permutationLength)
     }
 
@@ -75,11 +94,45 @@ public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
             return nil
         }
 
-        guard Set(indices).count == permutationLength else {
-            return next()
+        if !repeatingElements {
+            guard Set(indices).count == permutationLength else {
+                return next()
+            }
         }
 
         let permutation = indices.map { values[$0] }
         return permutation.isEmpty ? nil : permutation
     }
 }
+
+//
+///// An iterator-sequence that returns the permutations of elements in a sequence, with replacement (i.e. elements can repeat).
+///// See the `permutationsWithReplacement(length:)` Sequence and LazySequenceProtocol method.
+//public struct PermutationsWithReplacement<S: Sequence>: IteratorProtocol, Sequence {
+//
+//    let values: [S.Iterator.Element]
+//    let permutationLength: Int
+//    var indicesIterator: CartesianProduct<CountableRange<Int>>
+//
+//    init(sequence: S, length: Int?) {
+//        self.values = Array(sequence)
+//
+//        if let length = length {
+//            self.permutationLength = length
+//        } else {
+//            self.permutationLength = values.count
+//        }
+//
+//        self.indicesIterator = product(values.indices, repeated: permutationLength)
+//    }
+//
+//    public mutating func next() -> [S.Iterator.Element]? {
+//        guard let indices = indicesIterator.next() else {
+//            return nil
+//        }
+//
+//        let permutation = indices.map { values[$0] }
+//        return permutation.isEmpty ? nil : permutation
+//    }
+//}
+

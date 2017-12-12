@@ -80,7 +80,7 @@ public struct Combinations<S: Sequence>: IteratorProtocol, Sequence {
     init(sequence: S, length: Int) {
         self.values = Array(sequence)
         self.combinationLength = length
-        self.indicesIterator = values.indices.lazy.permutations(length: combinationLength)
+        self.indicesIterator = values.indices.lazy.permutations(length: combinationLength, repeatingElements: false)
     }
 
     public mutating func next() -> [S.Iterator.Element]? {
