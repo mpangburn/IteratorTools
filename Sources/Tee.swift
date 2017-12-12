@@ -39,8 +39,13 @@ public extension LazySequenceProtocol {
 /// See the `tee(_:)` Sequence and LazySequenceProtocol method.
 public struct Tee<S: Sequence>: IteratorProtocol, Sequence {
 
-    let sequence: S
-    var times: Int
+    private let sequence: S
+    private var times: Int
+
+    fileprivate init(sequence: S, times: Int) {
+        self.sequence = sequence
+        self.times = times
+    }
 
     public mutating func next() -> S.Iterator? {
         defer { times -= 1 }

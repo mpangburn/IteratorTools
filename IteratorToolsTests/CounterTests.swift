@@ -14,10 +14,7 @@ class CounterTests: XCTestCase {
 
     func testCounterBasic() {
         var values = counter()
-        XCTAssert(values.start == 0)
-        XCTAssert(values.step == 1)
         XCTAssert(values.next() == 0)
-        XCTAssert(values.start == 1)
         for index in 1...100 {
             XCTAssert(values.next() == Double(index))
         }

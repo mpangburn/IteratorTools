@@ -52,12 +52,12 @@ public extension LazySequenceProtocol {
 /// See the `grouped(by:)` Sequence method.
 public struct Grouper<S: Sequence, Key: Equatable>: IteratorProtocol, Sequence {
 
-    var iterator: S.Iterator
-    let key: (S.Iterator.Element) -> Key
-    var currentKey: Key?
-    var currentValues: [S.Iterator.Element] = []
+    private var iterator: S.Iterator
+    private let key: (S.Iterator.Element) -> Key
+    private var currentKey: Key?
+    private var currentValues: [S.Iterator.Element] = []
 
-    init(sequence: S, key: @escaping (S.Iterator.Element) -> Key) {
+    fileprivate init(sequence: S, key: @escaping (S.Iterator.Element) -> Key) {
         self.iterator = sequence.makeIterator()
         self.key = key
     }

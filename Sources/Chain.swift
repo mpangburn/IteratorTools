@@ -43,9 +43,9 @@ public func chain<S: Sequence>(_ sequenceArray: [S]) -> Chain<S> {
 /// See `chain(_:)`.
 public struct Chain<S: Sequence>: IteratorProtocol, Sequence {
 
-    var iterators: [S.Iterator]
+    private var iterators: [S.Iterator]
 
-    init(sequences: [S]) {
+    fileprivate init(sequences: [S]) {
         iterators = sequences.map { $0.makeIterator() }
     }
 

@@ -57,10 +57,10 @@ public extension LazySequenceProtocol {
 /// See the `permutations(repeatingElements:)` and `permutations(length:repeatingElements:)` Sequence and LazySequenceProtocol methods.
 public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
 
-    let values: [S.Iterator.Element]
-    let permutationLength: Int
-    let repeatingElements: Bool
-    var indicesIterator: CartesianProduct<CountableRange<Int>>
+    private let values: [S.Iterator.Element]
+    private let permutationLength: Int
+    private let repeatingElements: Bool
+    private var indicesIterator: CartesianProduct<CountableRange<Int>>
 
     init(sequence: S, length: Int?, repeatingElements: Bool) {
         self.values = Array(sequence)

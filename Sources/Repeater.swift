@@ -32,10 +32,10 @@ public func repeater<T>(value: T, times: Int = -1) -> Repeater<T> {
 /// See `repeater(value:times:)`
 public struct Repeater<T>: IteratorProtocol, LazySequenceProtocol {
 
-    let value: T
-    var times: Int
+    private let value: T
+    private var times: Int
 
-    init(value: T, times: Int) {
+    fileprivate init(value: T, times: Int) {
         self.value = value
         self.times = times
     }

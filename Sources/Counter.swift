@@ -29,10 +29,10 @@ public func counter(start: Double = 0, step: Double = 1) -> Counter {
 /// See `counter(start:step:)`
 public struct Counter: IteratorProtocol, LazySequenceProtocol {
 
-    var start: Double
-    let step: Double
+    private var start: Double
+    private let step: Double
 
-    init(start: Double, step: Double) {
+    fileprivate init(start: Double, step: Double) {
         self.start = start
         self.step = step
     }

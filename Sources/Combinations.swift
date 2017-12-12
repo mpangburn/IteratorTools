@@ -57,12 +57,12 @@ public extension LazySequenceProtocol {
 /// See the `combinations(length:repeatingElements:)` Sequence and LazySequenceProtocol method.
 public struct Combinations<S: Sequence>: IteratorProtocol, Sequence {
 
-    let values: [S.Iterator.Element]
-    let combinationLength: Int
-    let repeatingElements: Bool
-    var indicesIterator: AnyIterator<Array<Int>>
+    private let values: [S.Iterator.Element]
+    private let combinationLength: Int
+    private let repeatingElements: Bool
+    private var indicesIterator: AnyIterator<Array<Int>>
 
-    init(sequence: S, length: Int, repeatingElements: Bool) {
+    fileprivate init(sequence: S, length: Int, repeatingElements: Bool) {
         self.values = Array(sequence)
         self.combinationLength = length
         self.repeatingElements = repeatingElements

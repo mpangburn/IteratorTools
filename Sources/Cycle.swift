@@ -59,11 +59,11 @@ public extension LazySequenceProtocol {
 /// See the `cycle` and `cycle(times:)` Sequence and LazySequenceProtocol methods.
 public struct CycleIterator<S: Sequence>: IteratorProtocol, LazySequenceProtocol {
 
-    let sequence: S
-    var iterator: S.Iterator
-    var times: Int
+    private let sequence: S
+    private var iterator: S.Iterator
+    private var times: Int
 
-    init(sequence: S, times: Int = -1) {
+    fileprivate init(sequence: S, times: Int = -1) {
         self.sequence = sequence
         self.iterator = sequence.makeIterator()
         self.times = times

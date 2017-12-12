@@ -61,11 +61,11 @@ public func mixedProduct<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ seco
 /// See `product(_:)`.
 public struct CartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 
-    let sequences: [S]
-    var iterators: [S.Iterator]
-    var currentValues: [S.Iterator.Element] = []
+    private let sequences: [S]
+    private var iterators: [S.Iterator]
+    private var currentValues: [S.Iterator.Element] = []
 
-    init(_ sequences: [S]) {
+    fileprivate init(_ sequences: [S]) {
         self.sequences = sequences
         self.iterators = sequences.map { $0.makeIterator() }
     }
@@ -106,12 +106,12 @@ public struct CartesianProduct<S: Sequence>: IteratorProtocol, Sequence {
 /// See `mixedProduct(_:_:)`.
 public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
-    let secondSequence: S2
-    var firstIterator: S1.Iterator
-    var secondIterator: S2.Iterator
-    var currentFirstElement: S1.Iterator.Element?
+    private let secondSequence: S2
+    private var firstIterator: S1.Iterator
+    private var secondIterator: S2.Iterator
+    private var currentFirstElement: S1.Iterator.Element?
 
-    init(_ firstSequence: S1, _ secondSequence: S2) {
+    fileprivate init(_ firstSequence: S1, _ secondSequence: S2) {
         self.secondSequence = secondSequence
         self.firstIterator = firstSequence.makeIterator()
         self.secondIterator = secondSequence.makeIterator()

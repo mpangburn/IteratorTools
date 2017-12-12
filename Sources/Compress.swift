@@ -30,10 +30,10 @@ public func compress<S1, S2>(data: S1, selectors: S2) -> Compressor<S1, S2> {
 /// See `compress(data:selectors:)`.
 public struct Compressor<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence where S2.Iterator.Element == Bool {
 
-    var dataIterator: S1.Iterator
-    var selectorIterator: S2.Iterator
+    private var dataIterator: S1.Iterator
+    private var selectorIterator: S2.Iterator
 
-    init(data: S1, selectors: S2) {
+    fileprivate init(data: S1, selectors: S2) {
         self.dataIterator = data.makeIterator()
         self.selectorIterator = selectors.makeIterator()
     }

@@ -47,12 +47,12 @@ public extension LazySequenceProtocol {
 /// See the `accumulate(_:)` Sequence and LazySequenceProtocol method.
 public struct Accumulator<S: Sequence>: IteratorProtocol, Sequence {
 
-    let sequence: S
-    var iterator: S.Iterator
-    let accumulate: (S.Iterator.Element, S.Iterator.Element) -> S.Iterator.Element
-    var total: S.Iterator.Element? = nil
+    private let sequence: S
+    private var iterator: S.Iterator
+    private let accumulate: (S.Iterator.Element, S.Iterator.Element) -> S.Iterator.Element
+    private var total: S.Iterator.Element? = nil
 
-    init(sequence: S, accumulate: @escaping (S.Iterator.Element, S.Iterator.Element) -> S.Iterator.Element) {
+    fileprivate init(sequence: S, accumulate: @escaping (S.Iterator.Element, S.Iterator.Element) -> S.Iterator.Element) {
         self.sequence = sequence
         self.iterator = sequence.makeIterator()
         self.accumulate = accumulate

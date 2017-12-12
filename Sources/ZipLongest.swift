@@ -36,12 +36,12 @@ public func zipLongest<S1: Sequence, S2: Sequence>(_ firstSequence: S1, _ second
 /// See `zipLongest(_:_:firstFillValue:secondFillValue:)`.
 public struct ZipLongest<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence {
 
-    var firstIterator: S1.Iterator
-    var secondIterator: S2.Iterator
-    let firstFillValue: S1.Iterator.Element
-    let secondFillValue: S2.Iterator.Element
+    private var firstIterator: S1.Iterator
+    private var secondIterator: S2.Iterator
+    private let firstFillValue: S1.Iterator.Element
+    private let secondFillValue: S2.Iterator.Element
 
-    init(_ sequence1: S1, _ sequence2: S2, firstFillValue: S1.Iterator.Element, secondFillValue: S2.Iterator.Element) {
+    fileprivate init(_ sequence1: S1, _ sequence2: S2, firstFillValue: S1.Iterator.Element, secondFillValue: S2.Iterator.Element) {
         self.firstIterator = sequence1.makeIterator()
         self.secondIterator = sequence2.makeIterator()
         self.firstFillValue = firstFillValue

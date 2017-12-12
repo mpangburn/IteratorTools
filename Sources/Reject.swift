@@ -49,10 +49,10 @@ public extension LazySequenceProtocol {
 /// See the `reject(predicate:)` LazySequenceProtocol method.
 public struct Rejector<S: Sequence>: IteratorProtocol, Sequence {
 
-    var iterator: S.Iterator
-    let predicate: (S.Iterator.Element) -> Bool
+    private var iterator: S.Iterator
+    private let predicate: (S.Iterator.Element) -> Bool
 
-    init(sequence: S, predicate: @escaping (S.Iterator.Element) -> Bool) {
+    fileprivate init(sequence: S, predicate: @escaping (S.Iterator.Element) -> Bool) {
         self.iterator = sequence.makeIterator()
         self.predicate = predicate
     }
