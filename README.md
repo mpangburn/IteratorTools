@@ -21,7 +21,6 @@ A Swift port of Python's [itertools](https://docs.python.org/3/library/itertools
 	- [Methods](#methods)
 		- [`accumulate(_:)`](#accumulate_)
 		- [`combinations(length:repeatingElements:)`](#combinationslengthrepeatingelements)
-		- [`combinationsWithReplacement(length:)`](#combinationswithreplacementlength)
 		- [`cycle()`, `cycle(times:)`](#cycle-cycletimes)
 		- [`grouped(by:)`](#groupedby)
 		- [`permutations(length:repeatingElements:)`](#permutationslengthrepeatingelements)
