@@ -74,15 +74,17 @@ public struct Combinations<S: Sequence>: IteratorProtocol, Sequence {
     }
 
     public mutating func next() -> [S.Iterator.Element]? {
+      while true {
         guard let indices = indicesIterator.next() else {
             return nil
         }
 
         guard indices.sorted() == indices else {
-            return next()
+            continue
         }
 
         let combination = indices.map { values[$0] }
         return combination.isEmpty ? nil : combination
+      }
     }
 }

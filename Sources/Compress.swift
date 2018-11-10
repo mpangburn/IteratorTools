@@ -39,14 +39,16 @@ public struct Compressor<S1: Sequence, S2: Sequence>: IteratorProtocol, Sequence
     }
 
     public mutating func next() -> S1.Iterator.Element? {
+      while true {
         guard let nextData = dataIterator.next(), let nextSelector = selectorIterator.next() else {
             return nil
         }
 
         guard nextSelector else {
-            return next()
+            continue
         }
 
         return nextData
+      }
     }
 }
