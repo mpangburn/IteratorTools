@@ -62,6 +62,15 @@ class CombinationsWithoutRepetitionTests: XCTestCase {
         XCTAssert(combinations.isEmpty)
     }
 
+  func testCombinationsOfVeryLongLength() {
+    var combinations = [1, 2, 3, 4, 5, 6, 7, 8].lazy.combinations(length: 8, repeatingElements: false)
+    let repeats = 1
+    for _ in 1 ... repeats {
+      XCTAssert(combinations.next() != nil )
+    }
+    XCTAssert(combinations.next() == nil)
+  }
+
     func testCombinationsEmpty() {
         let combinations = [].combinations(length: 1, repeatingElements: false)
         XCTAssert(combinations.isEmpty)

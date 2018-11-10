@@ -119,6 +119,7 @@ public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorPro
     }
 
     public mutating func next() -> (S1.Iterator.Element, S2.Iterator.Element)? {
+      while true {
         // Avoid stack overflow
         guard secondSequence.underestimatedCount > 0 else {
             return nil
@@ -131,9 +132,10 @@ public struct MixedTypeCartesianProduct<S1: Sequence, S2: Sequence>: IteratorPro
         guard let secondElement = secondIterator.next() else {
             currentFirstElement = firstIterator.next()
             secondIterator = secondSequence.makeIterator()
-            return next()
+            continue
         }
 
         return (firstElement, secondElement)
+      }
     }
 }

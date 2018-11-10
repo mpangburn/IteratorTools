@@ -76,17 +76,19 @@ public struct Permutations<S: Sequence>: IteratorProtocol, Sequence {
     }
 
     public mutating func next() -> [S.Iterator.Element]? {
+      while true {
         guard let indices = indicesIterator.next() else {
             return nil
         }
 
         if !repeatingElements {
             guard Set(indices).count == permutationLength else {
-                return next()
+                continue
             }
         }
 
         let permutation = indices.map { values[$0] }
         return permutation.isEmpty ? nil : permutation
+      }
     }
 }
