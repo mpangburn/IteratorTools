@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		897776D01F54784E00D21FD5 /* Combinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Combinations.swift; path = Sources/Combinations.swift; sourceTree = "<group>"; };
 		897776D41F547B6800D21FD5 /* CombinationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinationsTests.swift; sourceTree = "<group>"; };
-		89B410991FDF68A7001D86E5 /* AnyIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyIterator.swift; sourceTree = "<group>"; };
+		89B410991FDF68A7001D86E5 /* AnyIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnyIterator.swift; path = Sources/AnyIterator.swift; sourceTree = "<group>"; };
 		89CEDB5E1F50942D005944DD /* Compress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compress.swift; path = Sources/Compress.swift; sourceTree = "<group>"; };
 		89CEDB601F509651005944DD /* CompressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompressTests.swift; sourceTree = "<group>"; };
 		89CEDB621F509B27005944DD /* Reject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reject.swift; path = Sources/Reject.swift; sourceTree = "<group>"; };
